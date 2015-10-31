@@ -18,7 +18,7 @@
     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
     <link href="{{ ASSET_PATH }}/css/prettify.css" rel="stylesheet" type="text/css">
-    <script src="{{ ASSET_PATH }}/js/prettify.js"></script>
+ 
     <!-- Le fav and touch icons -->
   <!-- Update these with your own images
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -33,10 +33,13 @@
     
 <!--    font-awesome-->
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
   
   </head>
+    
 
-  <body onload="prettyPrint()">
+  <!--<body onload="prettyPrint()">-->
+	  <body >
     <div class="navbar">
       <div class="navbar-inner">
        <div class="nav-narrow">
@@ -68,5 +71,18 @@
     </div>
 
     {% include JB/analytics %}
+       <script src="{{ ASSET_PATH }}/js/prettify.js"></script>
+    <script src="{{ ASSET_PATH }}/js/jquery.js"></script>
+    <script type="text/javascript">
+	 $(function() {
+   $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
+   prettyPrint();
+});
+  
+  
+</script>
+
   </body>
 </html>
+
+

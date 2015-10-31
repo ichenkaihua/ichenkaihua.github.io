@@ -3,8 +3,10 @@
 permalink: /:year/:month/:day/:title 
 markdown: rdiscount
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
-highlighter: pygments
+#highlighter: pygments
 #mardown: redcarpet
+#redcarpet:
+#extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough"]
 
 safe: false
 # Themes are encouraged to use these universal variables 
