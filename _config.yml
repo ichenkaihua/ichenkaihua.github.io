@@ -1,14 +1,26 @@
 # Site settings
-title: 陈开华博客 
-email: 954822984@qq.com 
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://chenkaihua.com" # the base hostname & protocol for your site
-twitter_username: chenkaihua
-github_username:  ichenkaihua
+title: chenkaihua
+email: admin@chenkaihua.com
+description: 陈开华博客,java开发者
+# > # this means to ignore newlines until "baseurl:"
+#   Write an awesome description for your new site here. You can edit this
+#   line in _config.yml. It will appear in your document head meta (for
+#   Google search results) and in your feed.xml site description.
+
+# baseurl: "" # the subpath of your site, e.g. /blog/
+# url: "http://yourdomain.com" # the base hostname & protocol for your site
+# twitter_username: jekyllrb
+github_username: ichenkaihua 
+permalink: /:year/:month/:day/:itle/
 
 # Build settings
 markdown: kramdown
+
+paginate: 10
+paginate_path: "page:num"
+
+# highlight
+# 本地用rouge, github上用pygments
+# highlighter: pygments
+# highlighter: rouge
+# highlighter: false
