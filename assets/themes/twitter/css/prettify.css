@@ -11,7 +11,7 @@
 
 .pln {
   color: #111111;
-  font-size: 17px;
+  
   
 }
  
@@ -24,37 +24,37 @@
 
   .kwd {
     color: #00a9a9;
-    font-size: 17px;
+    
   }
 
   .com {
     color: #999999;
-    font-size: 17px;
+    
   }
 
   .typ {
     color: #ff0055;
-    font-size: 17px;
+    
   }
 
   .lit {
     color: rgb(254,100,98);
-    font-size: 17px;
+    
   }
 
   .pun {
     color: #111111;
-    font-size: 17px;
+    
   }
 
   .opn {
     color: #111111;
-    font-size: 17px;
+   
   }
 
   .clo {
     color: #111111;
-    font-size: 17px;
+   
   }
 
   .tag {
@@ -74,12 +74,12 @@
 
   .dec {
     color: #111111;
-    font-size: 17px;
+    
   }
 
   .var {
     color: #111111;
-    font-size: 17px;
+    
   }
 
   .fun {
