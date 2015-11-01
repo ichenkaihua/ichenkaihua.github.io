@@ -48,7 +48,7 @@
             {% assign pages_list = site.pages %}
             {% assign group = 'navigation' %}
             {% include JB/pages_list %}
-            <li ><a href="http://www.chenkaihua.com">休闲博客</a></li>
+            <li ><a href="http://www.chenkaihua.com"  target="_blank">休闲博客</a></li>
             
           </ul>
         </div>
@@ -63,7 +63,7 @@
       
       <footer class="card clearfix">
         <span style="font-size:30px;"class="fa fa-github pull-left"></span><a href="https://github.com/{{ site.author.github}}/{{ site.author.github}}.github.io" style="display:inline-block;padding-right:80px;border-right:1px solid #bbb">fork me on GitHub</a>
-        <p class="pull-right">&copy; 2011 {{ site.author.name }}
+        <p class="pull-right">&copy; 2015 {{ site.author.name }}
           with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
         </p>
@@ -77,7 +77,7 @@
     <script src="{{ ASSET_PATH }}/js/jquery.js"></script>
     <script type="text/javascript">
 	 $(function() {
-   $('pre').addClass('prettyprint linenums');
+   $('pre').addClass('prettyprint linenums:0');
    prettyPrint();
 });
   
