@@ -4,7 +4,6 @@ title: "Hello world test"
 description: ""
 category: 
 tags: []
-date: 2015-11-02 11:36:57
 ---
 {% include JB/setup %}
 # Hello world test
