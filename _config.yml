@@ -2,6 +2,7 @@
 # For more see: http://jekyllrb.com/docs/permalinks/
 permalink: /:year/:month/:day/:title 
 #markdown: rdiscount
+timezone: CST
 markdown:  kramdown
 kramdown:
    input: GFM
