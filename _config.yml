@@ -8,7 +8,7 @@ kramdown:
    input: GFM
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 #highlighter: pygments
-mardown: redcarpet
+#mardown: redcarpet
 #redcarpet:
 #  extensions: [autolink,tables]
 #timezone : CST

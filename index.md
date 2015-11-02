@@ -15,6 +15,7 @@ tagline: java开发者
       			{{ post.date | date:"%Y" }}
       			</div>
       		</div> 
+      		<h1><a href="{{ BASE_PATH }}{{ post.url }}">{{post.title}}</a> </h1>
 		{{ post.content  | | split:'<!--break-->' | first }}
 	<div class = "read_more">
 		<a class="fa fa-link" href="{{ BASE_PATH }}{{ post.url }}">  查看全文&hellip;</a>
