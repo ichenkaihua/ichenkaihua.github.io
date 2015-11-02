@@ -3,11 +3,17 @@
 permalink: /:year/:month/:day/:title 
 #markdown: rdiscount
 timezone: CST
-markdown:  kramdown
+markdown: kramdown
 kramdown:
    input: GFM
+   extensions: 
+      - autolink
+      - footnotes
+      - smart
+   use_coderay: true
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 #highlighter: pygments
+highlighter: rouge
 #mardown: redcarpet
 #redcarpet:
 #  extensions: [autolink,tables]
