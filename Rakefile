@@ -72,7 +72,7 @@ task :post do
     post.puts "date: #{date2}"
     post.puts "---"
     post.puts "{% include JB/setup %}"
-    post.puts "# #{title.gsub(/-/,' ')}"
+    
   end
 end # task :post
 

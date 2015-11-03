@@ -6,11 +6,11 @@ timezone: CST
 markdown: kramdown
 kramdown:
    input: GFM
-   extensions: 
-      - autolink
-      - footnotes
-      - smart
-   use_coderay: true
+#   extensions: 
+#      - autolink
+#      - footnotes
+#      - smart
+#   use_coderay: true
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 #highlighter: pygments
 highlighter: rouge
