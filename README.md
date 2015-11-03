@@ -6,6 +6,8 @@
 * 使用了bootstrap框架
 * 使用font-awesome进行修饰
 
+demo: http://www.chenkaihua.com
+
 新增特性:
 
 * 修改评论为多说
