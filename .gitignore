@@ -5,6 +5,6 @@ Thumbs.db
 .DS_Store
 *.swp
 !.gitkeep
-
+_glynn.yml
 .rbenv-version
 .rvmrc
