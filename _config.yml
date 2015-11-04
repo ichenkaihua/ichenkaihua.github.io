@@ -6,17 +6,16 @@ timezone: CST
 markdown: kramdown
 kramdown:
    input: GFM
-#   extensions: 
-#      - autolink
-#      - footnotes
-#      - smart
 #   use_coderay: true
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 #highlighter: pygments
-highlighter: rouge
-#mardown: redcarpet
+#pygments:
+#   options: [startinline]
+#pygments: true
+#highlighter: rouge
+#mardown: redcarpet2
 #redcarpet:
-#  extensions: [autolink,tables]
+#   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
 #timezone : CST
 safe: false
 # Themes are encouraged to use these universal variables 
