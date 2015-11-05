@@ -57,7 +57,7 @@ df -h
 2.  命令功能：显示每个文件和目录的磁盘使用空间。
 3. 命令参数：
 	- `-a或-all` : 显示目录中个别文件的大小。   
-	-`-b或-bytes` :显示目录或文件大小时，以byte为单位。   
+	- `-b或-bytes` :显示目录或文件大小时，以byte为单位。   
 	- `-c或--total`  除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。 
 	- `-k或--kilobytes`  以KB(1024bytes)为单位输出。
 	- `-m或--megabytes`  以MB为单位输出。   
@@ -67,9 +67,9 @@ df -h
 	- `-L<符号链接>或--dereference<符号链接>` 显示选项中所指定符号链接的源文件大小。   
 	- `-S或--separate-dirs`   显示个别目录的大小时，并不含其子目录的大小。 
 	- `-X<文件>或--exclude-from=<文件> ` 在<文件>指定目录或文件。   
-	-`--exclude=<目录或文件>  `       略过指定的目录或文件。    
+	- `--exclude=<目录或文件>  `       略过指定的目录或文件。    
 	- `-D或--dereference-args`   显示指定符号链接的源文件大小。   
-	-`-H或--si ` 与-h参数相同，但是K，M，G是以1000为换算单位。   
+	- `-H或--si ` 与-h参数相同，但是K，M，G是以1000为换算单位。   
 	- `-l或--count-links `  重复计算硬件链接的文件。  
 
 du常用命令
@@ -100,9 +100,9 @@ UUID=41baef7a-70fa-4bd0-8ea0-25be9c5ef643(要挂载的硬盘如sdb的UUID)   /mn
 4. 重启
 
 ### 参考资料
-> * [每天一个linux命令（33）：df 命令-博客园][df-link]
-* [每天一个linux命令（34）：du 命令-博客园][du-link]
-* [Ubuntu 硬盘自动挂载-Flowers_World-ChinaUnix博客][1]
+> * [每天一个linux命令（33）：df 命令-博客园][df-link]{:target="_blank"}
+* [每天一个linux命令（34）：du 命令-博客园][du-link]{:target="_blank"}
+* [Ubuntu 硬盘自动挂载-Flowers_World-ChinaUnix博客][1]{:target="_blank"}
 
 
 
