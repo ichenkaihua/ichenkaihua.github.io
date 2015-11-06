@@ -34,7 +34,7 @@ configurations {
 ```
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    driver 'com.h2database:h2:1.4.190'
+   driver 'mysql:mysql-connector-java:5.1.37'
 
 }
 
