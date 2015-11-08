@@ -48,7 +48,7 @@ df常用命令:
 df -h
 ```
 
-![df-screen](http://7xivpo.com1.z0.glb.clouddn.com/df-screen.png?attname=&e=1446794903&token=WOtBIbean1o8W3l-91px1Ed3ULwMrFfeRWeOX5rA:62Ud5ZSk3Dng-Y44PgUvS_zatxY)
+![df-screen](http://7xivpo.com1.z0.glb.clouddn.com/blkid-screen.png)
 
 #### du的使用
 
@@ -78,23 +78,23 @@ du常用命令
 # 获取当前目录的大小
 du -sh
 ```
-![du-screen](http://7xivpo.com1.z0.glb.clouddn.com/du-screen.png?attname=&e=1446796576&token=WOtBIbean1o8W3l-91px1Ed3ULwMrFfeRWeOX5rA:kszyGumzxIp1ABZZLJyyZFWqYdc)
+![du-screen](http://7xivpo.com1.z0.glb.clouddn.com/du-screen.png)
 
 ### 开机挂载硬盘分区
 
 1. 查看硬盘分区:
 	- `sudo fdisk  -l`
-![fdisk-screen](http://7xivpo.com1.z0.glb.clouddn.com/fdisk.png?attname=&e=1446797084&token=WOtBIbean1o8W3l-91px1Ed3ULwMrFfeRWeOX5rA:oaOWB2zsBkWuUsOUkUCDOFWRbdM)
+![fdisk-screen](http://7xivpo.com1.z0.glb.clouddn.com/fdisk.png)
 2. 查看硬盘UUID:
 	- `sudo blkid`
-![blkid-screen](http://7xivpo.com1.z0.glb.clouddn.com/blkid-screen.png?attname=&e=1446797255&token=WOtBIbean1o8W3l-91px1Ed3ULwMrFfeRWeOX5rA:dci5MjMeHuh0VdCxKn1CQ3PXlEA)
+![blkid-screen](http://7xivpo.com1.z0.glb.clouddn.com/blkid-screen.png)
 3. 修改/etc/fstab：
 	- `sudo vim /etc/fstab`，后面添加
 ```
 UUID=41baef7a-70fa-4bd0-8ea0-25be9c5ef643(要挂载的硬盘如sdb的UUID)   /mnt(要挂载的目录)  ext3(文件类型)  default  0 0
 ```
 比如我的:
-![fstab-cat-screen](http://7xivpo.com1.z0.glb.clouddn.com/fstabl-cat.png?attname=&e=1446797624&token=WOtBIbean1o8W3l-91px1Ed3ULwMrFfeRWeOX5rA:SrKkUn1x0bDgke9mhyedfG13BbU)
+![fstab-cat-screen](http://7xivpo.com1.z0.glb.clouddn.com/fstabl-cat.png)
 
 
 4. 重启

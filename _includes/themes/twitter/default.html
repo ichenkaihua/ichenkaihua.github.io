@@ -43,6 +43,7 @@
           <script src="{{ ASSET_PATH }}/js/prettify/prettify.js"></script>
     
     
+    
 <!--    font-awesome-->
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -52,13 +53,16 @@
 $(document).ready(function(){
 	$("pre").addClass("prettyprint linenums:0")
 	prettyPrint();
+	
 });		  	 
 </script>
 
     
 
   <!--<body onload="prettyPrint()">-->
-	  <body  >
+	  <body  data-spy="scroll" data-target=".toc" data-offset="20" >
+		  
+		  
     <div class="navbar">
       <div class="navbar-inner">
        <div class="nav-narrow">
@@ -74,11 +78,17 @@ $(document).ready(function(){
       </div>
     </div>
 
+
+
     <div class="container-narrow">
+
+		
 
       <div class="content">
         {{ content }}
       </div>
+      
+      
       
       <footer class="card clearfix">
         <span style="font-size:30px;"class="fa fa-github pull-left"></span><a href="https://github.com/{{ site.author.github}}/{{ site.author.github}}.github.io" style="display:inline-block;padding-right:80px;border-right:1px solid #bbb">fork me on GitHub</a>
