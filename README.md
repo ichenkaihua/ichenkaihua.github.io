@@ -1,17 +1,17 @@
 #jekylll blog
 
-此博客模板基于 https://github.com/enml/blog/tree/jekyll-blog 模板修改而来，感谢enml用户。
+## demo
+这是我的博客模板: http://www.chenkaihua.com 欢迎大家fork！
 
-* 基于jekyll的blog
-* 使用了bootstrap框架
-* 使用font-awesome进行修饰
+## 说明
 
-demo: http://www.chenkaihua.com
+博客模板基于 https://github.com/thomaszhao/thomaszhao.github.io 修改，感谢thomaszhao的分享!
 
-新增特性:
-
-* 修改评论为多说
-* 修改代码高亮为 google-code-prettify，能自动识别语言,并且更漂亮
-* 代码高亮默认显示行数，修改代码字体大小为15px
-* 增加jquery框架
-
+## 功能
+* 基于bootstrap3框架
+* 评论为多说
+* 分享为多说
+* 代码高亮为 google-code-prettify
+* 文章页面右侧toc导航
+* js静态搜索
+* 首页分页显示标题摘要
