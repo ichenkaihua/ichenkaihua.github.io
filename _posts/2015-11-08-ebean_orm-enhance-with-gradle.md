@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Ebean-ORM enhance with gradle"
-description: ""
+description: "Ebean-ORM enhance with gradle"
 category: j2ee
 tags: [gradle,ebean-orm]
 date: 2015-11-08 22:12:43
 ---
 {% include JB/setup %}
 
-使用`Ebean ORM`有个麻烦的地方，就是每次部署app前，需要`enhance`下`entity`类的class文件，所谓`enhance`，就是加强操作，用于修改实体bean，包括"编织“，”转换“，”字节码操作“等过程。如果没有`enhance`就使用ebean orm，则ebean会抛出异常。`Ebean ORM`提供了eclipse插件、idea插件、maven插件、ant等解决方案，虽然没有gradle插件支持，不过好在gradle支持ant任务，通过gradle调用ebean提供的ant target，完成编译后自动`enhance`操作。<!--break-->
+使用`Ebean ORM`有个麻烦的地方，就是每次部署app前，需要`enhance`下`entity`类的class文件，所谓`enhance`，就是加强操作，用于修改实体bean，包括"编织“，”转换“，”字节码操作“等过程。如果没有`enhance`就使用ebean orm，则ebean会抛出异常。`Ebean ORM`提供了eclipse插件、idea插件、maven插件、ant等解决方案，虽然没有gradle插件支持，不过好在gradle支持ant任务，通过gradle调用ebean提供的ant target，完成编译后自动`enhance`操作。<!-- more -->
 
 * TOC
 {:toc}

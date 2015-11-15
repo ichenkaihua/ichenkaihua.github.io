@@ -1,7 +1,7 @@
 ---
 layout: page
-title: 标签
-header: 根据标签快速导航到相应的文章
+title: Tags
+header: Posts By Tag
 group: navigation
 ---
 {% include JB/setup %}
@@ -11,15 +11,11 @@ group: navigation
   {% include JB/tags_list %}
 </ul>
 
-<div class = "card">
-{% for tag in site.tags %} 
 
-  <h3 id="{{ tag[0] }}-ref">{{ tag[0] }}</h3>
+{% for tag in site.tags %} 
+  <h2 id="{{ tag[0] }}-ref">{{ tag[0] }}</h2>
   <ul>
     {% assign pages_list = tag[1] %}  
     {% include JB/pages_list %}
   </ul>
-
-
 {% endfor %}
-</div>

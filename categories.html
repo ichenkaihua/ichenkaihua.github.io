@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 分类
+title: Categories
 header: Posts By Category
 group: navigation
 ---
@@ -12,15 +12,11 @@ group: navigation
 </ul>
 
 
-
 {% for category in site.categories %} 
-<div class = "card">
-  <h2 id="{{ category[0] }}-ref" class="hat_title">{{ category[0] | join: "/" }}</h2>
+  <h2 id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h2>
   <ul>
     {% assign pages_list = category[1] %}  
     {% include JB/pages_list %}
   </ul>
-</div>
-
 {% endfor %}
 

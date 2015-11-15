@@ -1,0 +1,132 @@
+---
+title: 陈开华博客
+tagline: 首页
+layout: page
+---
+{% include JB/setup %}
+
+
+
+
+
+<div class="row">
+    <div class="col-md-9">
+    {% for post in paginator.posts %}
+
+<div >
+  <h1 id="title" >{{ post.title }}</h1>
+  {{ post.excerpt }}
+  <div  class="row" >
+  <div class="col-xs-6 " ><small>{{ post.date | date: "%Y-%m-%d" }}</small></div>
+
+  <div class="col-xs-6 text-right"><a class="btn btn-primary  " href="{{ post.url }}" role="button">阅读全文</a></div>
+  
+  </div>
+  
+</div>
+
+<hr />
+
+{% endfor %}
+
+
+<nav  class="text-center" >
+<ul class="pagination">
+  {% if paginator.previous_page %}
+    <li >
+      {% if paginator.previous_page == 1 %}
+           <a href="/" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+      {% else %}
+           <a href="{{ paginator.previous_page_path }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+      {% endif %}
+    </li>
+  {% else %}
+    <li class="disabled">
+    <a  aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+
+    </li>
+  {% endif %}
+
+  
+    
+      {% if paginator.page == 1 %}
+      <li class="active"><span>1</span></li>
+        
+      {% else %}
+      <li>
+        <a href="/">1</a>
+        </li>
+      {% endif %}
+    
+
+    {% for count in (2..paginator.total_pages) %}
+      
+        {% if count == paginator.page %}
+          <li class="active"><span class="current-page">{{ count }}</span></li>
+        {% else %}
+          <li><a href="/page{{ count }}">{{ count }}</a></li>
+        {% endif %}
+      
+    {% endfor %}
+  
+
+  {% if paginator.next_page %}
+    <li >
+      
+      <a href="{{ paginator.next_page_path }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  {% else %}
+    <li class="disabled">
+     <a   aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+      
+    </li>
+  {% endif %}
+</ul>
+</nav>
+
+
+    </div>
+<div class="col-md-3 hidden-xs">
+
+
+
+<div class="list-group">
+  <div  class="list-group-item ">分类文章</div>
+{% for category in site.categories %} 
+  
+<a href="categories.html#{{ category[0] }}-ref" class="list-group-item"> {{ category[0] }} <span class="badge">{{ category[1].size }}</span></a>  
+{% endfor %}  
+</div>
+
+<div class="list-group">
+  <div  class="list-group-item ">友情链接</div>
+  <a href="http://www.weiyf.cn"  target="_blank" class="list-group-item">预发技术博客 </a>
+  <a href="http://www.chenzhongjin.cn"  target="_blank"  class="list-group-item">仲锦博客博客 </a>
+  <a href="http://www.qiushurong.cn"  target="_blank" class="list-group-item">小树技术博客</a>
+  
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
