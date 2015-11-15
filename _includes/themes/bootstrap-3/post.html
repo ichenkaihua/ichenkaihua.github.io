@@ -4,13 +4,12 @@
 
     <!-- article header -->
     <div class="page-header">
-        <h1 id="title"><a href="{{ page.url }}" target="_blank">
+        <h1 id="title">
               {{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}
-          </a>
         </h1>
       <div class="meta">
-          By&nbsp;<a href="{{ site.production_url }}">{{ site.author.name }}</a>
-          on&nbsp;<b>{{ page.date | date_to_long_string }}</b>
+         
+         {{ page.date | date_to_long_string }}</b>
         
       </div>
     </div>
