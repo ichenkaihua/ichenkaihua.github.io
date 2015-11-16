@@ -104,13 +104,22 @@ layout: page
   <div  class="list-group-item ">分类文章</div>
 {% for category in site.categories %} 
   
-<a href="categories.html#{{ category[0] }}-ref" class="list-group-item"> {{ category[0] }} <span class="badge">{{ category[1].size }}</span></a>  
+<a href="{{ BASE_PATH }}/categories.html#{{ category[0] }}-ref" class="list-group-item"> {{ category[0] }} <span class="badge">{{ category[1].size }}</span></a>  
 {% endfor %}  
 </div>
 
 <div class="list-group">
+  <div  class="list-group-item ">Github Projects</div>
+  <a href="https://github.com/ichenkaihua/GreenDAO-Simple-Generate" title="用少量注解简化greendao的生成" target="_blank" class="list-group-item">GreenDAO-Simple-Generate</a>
+  <a href="https://github.com/ichenkaihua/ssm-easy-template"   title="spring+springmvc+mybatis+shiro简单集成框架"  target="_blank"  class="list-group-item">ssm-easy-template</a>
+  <a href="https://github.com/ichenkaihua/spring-ebean"  title="spring4+springMVC4+EbeanORM6+flyway+Gradle" target="_blank" class="list-group-item">spring-ebean</a>
+  
+</div>
+
+
+<div class="list-group">
   <div  class="list-group-item ">小伙伴</div>
-  <a href="http://www.weiyf.cn"  target="_blank" class="list-group-item">预发技术博客 </a>
+  <a href="http://www.weiyf.cn"  target="_blank" class="list-group-item">裕发技术博客 </a>
   <a href="http://www.chenzhongjin.cn"  target="_blank"  class="list-group-item">仲锦博客博客 </a>
   <a href="http://www.qiushurong.cn"  target="_blank" class="list-group-item">小树技术博客</a>
   
