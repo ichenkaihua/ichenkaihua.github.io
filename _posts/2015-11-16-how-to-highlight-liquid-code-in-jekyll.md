@@ -3,7 +3,7 @@ layout: post
 title: "jekyll中高亮Liquid代码"
 description: "How to highlight Liquid code in jekyll"
 category: web
-tags: [jekyll.liquid]
+tags: [jekyll,liquid]
 ---
 {% include JB/setup %}
 
