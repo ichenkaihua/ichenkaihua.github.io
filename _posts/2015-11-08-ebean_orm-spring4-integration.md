@@ -178,7 +178,7 @@ dependencies {
 
 ### 怎样使用
 
-ebean项目部署前，必须要`enhance`，具体操作请参考我的教程：
+ebean项目部署前，必须要`enhance`，具体操作请参考我的教程：[ebean-orm enhance with gradle]({% post_url 2015-11-08-ebean_orm-enhance-with-gradle %})
 
 ```java
 @Service
