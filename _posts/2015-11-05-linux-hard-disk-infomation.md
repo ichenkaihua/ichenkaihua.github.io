@@ -6,7 +6,7 @@ category: linux
 tags: [linux命令]
 date: 2015-11-05 13:57:52
 ---
-{% include JB/setup %}
+
 
 使用linux时经常需要获取硬盘分区信息、容量大小，文件大小等信息。linux提供了`df` `du`等命令提供上述信息。经常在linux下需要开机挂载硬盘分区，linux提供了简单的解决方法。
 <!-- more -->

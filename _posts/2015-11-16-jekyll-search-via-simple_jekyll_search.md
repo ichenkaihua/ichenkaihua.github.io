@@ -5,7 +5,7 @@ description: "jekyll search via Simple-Jekyll-Search | 使用Simple-Jekyll-Searc
 category: web
 tags: [jekyll,Simple-Jekyll-Search]
 ---
-{% include JB/setup %}
+
 
 这两天换了博客主题，解决了小屏幕不适配问题，也加了些自定义的内容。总之，比较合心意。相对上个博客主题最大变化，就是加入了搜索功能。网络上提供了多种方式解决jekyll搜索的不足，我使用的是[Simple-Jekyll-Search][1]。<!-- more -->
 

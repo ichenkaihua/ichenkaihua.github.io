@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+    <title>jekyll search via Simple-Jekyll-Search-陈开华博客</title>
+    
+
+
+    
+      <meta name="keywords" content="jekyll, Simple-Jekyll-Search">
+    
+    
+    <meta name="description" content="这两天换了博客主题，解决了小屏幕不适配问题，也加了些自定义的内容。总之，比较合心意。相对上个博客主题最大变化，就是加入了搜索功能。网络上提供了多种方式解决jekyll搜索的不足，我使用的是Simple-Jekyll-Search。
+
+ - 陈开华">
+    
+    <meta name="author" content="陈开华">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/bootstrap-3.3.1/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    
+    <!-- Custom styles -->
+    <link href="/assets/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <!-- google code prettify -->
+    <link href="/assets/google-code-prettify/prettify.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <!-- atom & rss feed 
+    <link href="" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+-->
+  </head>
+
+  <body>
+  <!-- Skip to main content -->
+    <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
+
+   <div id="wrap">
+      <nav class="navbar navbar-default bs-docs-bar-top" role="navigation">
+       <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">陈开华博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+		<li><a href="/">Home</a></li>
+		<li><a href="/archive.html">Archive</a></li>
+		<li><a href="/categories.html">Categories</a></li>
+		<li><a href="/tags.html">Tags</a></li>
+		<li><a href="/about.html">About</a></li>
+	  </ul>
+        <!-- site search -->
+ <div class="dropdown navbar-form navbar-right ">
+   <input  id="dLabel" name="word" type="text"  aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="form-control typeahead"   placeholder="搜索">
+  
+  <ul class="dropdown-menu" aria-labelledby="dLabel" id="c">
+    
+  </ul>
+</div>
+
+      
+        </div><!-- /.navbar-collapse -->
+       </div><!-- class="container" -->
+      </nav>
+
+    <!-- doc-container -->
+    <div class="container">
+
+        <div class="row">
+  <div class="col-md-9" role="main">
+
+    <!-- article header -->
+    <div class="page-header">
+        <h1 id="title">
+              jekyll search via Simple-Jekyll-Search 
+        </h1>
+      <div class="meta">
+         
+         16 November 2015</b>
+        
+      </div>
+    </div>
+
+    <!-- article body -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="content bs-docs-container markdown-body">
+
+          <p>这两天换了博客主题，解决了小屏幕不适配问题，也加了些自定义的内容。总之，比较合心意。相对上个博客主题最大变化，就是加入了搜索功能。网络上提供了多种方式解决jekyll搜索的不足，我使用的是<a href="https://github.com/christian-fei/Simple-Jekyll-Search">Simple-Jekyll-Search</a>。<!-- more --></p>
+
+<h2 id="section">常用解决方案</h2>
+<p>主页有三种方式：</p>
+
+<ul>
+  <li>google/baidu的站内搜索：优点是嵌入简单，缺点是不稳定。</li>
+  <li>使用jekyll插件，优点是使用简单，但是github-pages不支持插件。</li>
+  <li>使用javascript实现简单静态搜索，<em>Simple-Jekyll-Search</em>项目就是这种方式。</li>
+</ul>
+
+<h2 id="simple-jekyll-search">Simple-Jekyll-Search的使用</h2>
+<p><strong>Simple-Jekyll-Search</strong>是个开源项目,托管在github:<a href="https://github.com/christian-fei/Simple-Jekyll-Search">https://github.com/christian-fei/Simple-Jekyll-Search</a>，方便的话，给个star。</p>
+
+<h3 id="section-1">下载</h3>
+
+<pre><code class="language-shell"># 下载Simple-jekyll-Search
+git clone https://github.com/christian-fei/Simple-Jekyll-Search.git
+</code></pre>
+
+<h3 id="searchjson">配置<code>search.json</code>文件</h3>
+<p>进入博客目录，新建<strong>search.json</strong>文件,内容如下:</p>
+
+<pre><code class="language-json">
+[
+  {% for post in site.posts %}
+    {
+      "title"    : "{{ post.title | escape }}",
+      "category" : "{{ post.category }}",
+      "tags"     : "{{ post.tags | join: ', ' }}",
+      "url"      : "{{ site.baseurl }}{{ post.url }}",
+      "date"     : "{{ post.date }}"
+    } {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+
+</code></pre>
+<p><strong>search.json</strong>文件的作用是生成搜索的数据索引，上面的内容能通过标题，tag的关键字搜索，我认为足够了。</p>
+
+<h3 id="section-2">嵌入模板</h3>
+<p>找到页面html模板，把js文件引入到html中，然后指定一个搜索框，比如在<strong>default.html</strong>文件中:</p>
+
+<pre><code class="language-html">&lt;!-- Html Elements for Search --&gt;
+&lt;div id="search-container"&gt;
+&lt;input type="text" id="search-input" placeholder="search..."&gt;
+&lt;ul id="results-container"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- Script pointing to jekyll-search.js --&gt;
+&lt;script src="/bower_components/simple-jekyll-search/dest/jekyll-search.js" type="text/javascript"&gt;&lt;/script&gt;
+</code></pre>
+
+<h3 id="section-3">配置</h3>
+<p>怎么使用这个搜索呢，非常简单，在<strong>default.html</strong>中使用javascript配置搜索框和<code>search.json</code>位置就好了。</p>
+
+<pre><code class="language-javascript">    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('results-container'),
+        json: '/search.json',
+        searchResultTemplate: '&lt;li&gt;&lt;a href="{url}" title="{desc}"&gt;{title}&lt;/a&gt;&lt;/li&gt;',
+        noResultsText: '没有搜索到文章',
+        limit: 20,
+        fuzzy: false
+      })
+</code></pre>
+<p>解释下主要的配置项:</p>
+
+<ul>
+  <li><strong>searchInput</strong>:输入框，配置之后会给输入框添加监听，只要输入框的值发生变化，搜索结果的容器也发生变化。</li>
+  <li><strong>resultsContainer</strong>:存放搜索结果的容器，一般是<code>ul</code></li>
+  <li><strong>json</strong>:<code>search.json</code>的位置</li>
+  <li><strong>searchResultTemplate</strong>:搜索出的每一项怎么渲染，上例是添加一个<code>li</code>,元素会添加在<code>resultsContainer</code>中</li>
+</ul>
+
+<p>这样配置之后，在输入框输入关键字，<code>results-container</code>就会显示搜索到的结果。</p>
+
+<h3 id="bootstrap">配合bootstrap</h3>
+<p>上述教程虽然实现了搜索功能，但是搜索效果不太美观。bootstrap是个优秀的前端框架，提供了常用组件。<code>Simple-Jekyll-Search</code>结合bootstrap的下拉菜单<code>drapdown</code>组件，比较完美解决搜索外观问题。直接看代码：</p>
+
+<pre><code class="language-html"> &lt;div class="dropdown navbar-form navbar-right "&gt;
+   &lt;input  id="dLabel" name="word" type="text"  aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="form-control typeahead"   placeholder="搜索"&gt;
+  
+  &lt;ul class="dropdown-menu" aria-labelledby="dLabel" id="c"&gt;
+    
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+<p>这段代码的意思是，只要输入框被点击，下拉菜单就显示，配合<strong>Simple-Jekyll-Search</strong>，实现效果如下:<br />
+<img src="http://7xivpo.com1.z0.glb.clouddn.com/jekyll-search-bootstrap.png" alt="jekyll-search-bootstrap" /><br />
+如果有不明白的地方，查看这篇文章的网页源码就可以看到了。</p>
+
+<h2 id="section-4">参考资料</h2>
+<blockquote>
+  <ul>
+    <li><a href="https://github.com/christian-fei/Simple-Jekyll-Search">Simple-Jekyll-Search-Github</a></li>
+  </ul>
+</blockquote>
+
+
+          
+        </div>
+
+
+   
+
+
+
+  <hr />
+
+
+    
+        <ul class="tag_box inline">
+          <li><i class="glyphicon glyphicon-open"></i></li>
+          
+          
+
+
+  
+     
+    	<li><a href="#web-ref">
+    		web <span>2</span>
+    	</a></li>
+    
+  
+
+
+        </ul>
+      
+
+      
+        <ul class="tag_box inline">
+          <li><i class="glyphicon glyphicon-tags"></i></li>
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#jekyll-ref">jekyll <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#Simple-Jekyll-Search-ref">Simple-Jekyll-Search <span>1</span></a></li>
+    
+  
+
+
+        </ul>
+      
+
+      <hr />
+  <!-- 上下页 -->
+        <div>
+   
+          <nav>
+  <ul class="pager">
+  
+    <li class="previous "><a href="/2015/11/16/how-to-highlight-liquid-code-in-jekyll"><span aria-hidden="true">&larr;</span> jekyll中高亮Liquid代码</a></li>
+    
+  
+    <li class="next disabled "><a href="#"><span aria-hidden="true">&rarr;</span> </a></li>
+  
+  </ul>
+</nav>
+        </div>
+
+
+             <!-- 评论 -->
+        <!-- Duoshuo Comment START -->
+<div class="ds-thread" data-thread-key="/2015/11/16/jekyll-search-via-simple_jekyll_search" data-title="jekyll search via Simple-Jekyll-Search" data-url="http://www.chenkaihua.com/2015/11/16/jekyll-search-via-simple_jekyll_search"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"chenkaihua"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- Duoshuo Comment END -->
+
+     
+      </div>
+    </div>
+
+  </div> <!-- class="col-md-9" -->
+  <!-- directory side navigation -->
+  
+  <div class="col-md-3" role="complementary">
+    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+      <ul id="sideNav" class="nav bs-docs-sidenav">
+
+        <!-- code will be generated in application.js -->
+
+      </ul>
+      <a class="back-to-top" href="#top">
+        Back to top
+      </a>
+    </nav>
+  </div> <!-- col-md-3 -->
+  
+</div> <!-- div class="row" -->
+
+
+
+
+
+    </div> <!-- doc-container -->
+
+    </div><!-- div id="wrap" -->
+
+
+    <div id="footer">
+      <div class="container bs-docs-bar-footer">
+          <p><a href="https://github.com/ichenkaihua/ichenkaihua.github.io">Fork me on Github</a> &copy; 2015 by 陈开华. </p>
+      </div>
+    </div>
+
+
+   
+
+ <script src="/assets/jquery-1.11.2.min.js"></script>
+    <script src="/assets/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+    <script src="/assets/js/application.js"></script>
+    <script src="/assets/google-code-prettify/prettify.js"></script>
+    <script src="/assets/jekyll-search.js" type="text/javascript"></script>
+    
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+        /*google-code-prettify*/
+        $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+        prettyPrint();
+
+        /* Tips */
+        $('pre .language-tips').parent().addClass('tom-callout-tips');
+
+        /* A link icon on the left of headers. */
+        $(".bs-docs-container h1,.bs-docs-container h2, .bs-docs-container h3, .bs-docs-container h4, .bs-docs-container h5, .bs-docs-container h6").each(function(i, el) {
+          var $el, icon, id;
+          $el = $(el);
+          id = $el.attr('id');
+          icon = '<span class="glyphicon glyphicon-link"></span>';
+          if (id) {
+             $el.prepend($("<a class='anchor' />").attr("href", "#" + id).html(icon));
+          }
+        })
+
+
+      });
+
+
+      /*jekyll 搜索*/
+        SimpleJekyllSearch({
+        searchInput: document.getElementById('dLabel'),
+        resultsContainer: document.getElementById('c'),
+        json: '/search.json',
+        searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+        noResultsText: '没有搜索到文章',
+        limit: 20,
+        fuzzy: false
+      })
+
+
+    </script>
+       
+   
+
+    
+  </body>
+</html>

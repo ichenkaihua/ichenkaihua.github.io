@@ -1,6 +1,33 @@
----
-theme :
-  name : bootstrap-3
----
-{% include JB/setup %}
-{% include themes/bootstrap-3/default.html %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+ {% include head.html %}
+
+  <body>
+  <!-- Skip to main content -->
+    <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
+
+   <div id="wrap">
+   {% include header.html %}
+
+    <!-- doc-container -->
+    <div class="container">
+
+        {{ content }}
+
+    </div> <!-- doc-container -->
+
+    </div><!-- div id="wrap" -->
+
+
+   {% include footer.html %}
+
+
+   {% include analytics %}
+
+{% include foot.html %}   
+   
+
+    
+  </body>
+</html>

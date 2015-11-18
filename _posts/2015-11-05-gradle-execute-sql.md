@@ -6,7 +6,7 @@ category: java
 tags: [gradle,sql]
 date: 2015-11-05 20:07:51
 ---
-{% include JB/setup %}
+
 
 gradle是目前java应用最强大的自动化构建工具。gradle以groovy语言基础，基于DSL（领域特定语言)语法。因为基于groovy，所以java能做的事情，gradle都能做。由于gradle基于DSL语法，因此在配置gradle时，非常简洁灵活。
 上面说了，gradle基于groovy语言，groovy又基于java，因此gradle无所不能。项目开发时，要在本地环境调试应用，涉及到数据库的初始化等步骤，技术难度不大，却要花费些时间。gradle完全可以帮助我们初始化数据库。<!-- more -->

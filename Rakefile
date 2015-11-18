@@ -73,7 +73,6 @@ task :post do
     post.puts "tags: #{tags}"
     post.puts "date: #{date2}"
     post.puts "---"
-    post.puts "{% include JB/setup %}"
     
   end
 end # task :post

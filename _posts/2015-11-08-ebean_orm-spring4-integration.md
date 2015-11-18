@@ -6,7 +6,7 @@ category: [j2ee,Spring]
 tags: [Ebean-ORM,Spring]
 date: 2015-11-08 19:53:03
 ---
-{% include JB/setup %}
+
 
 `Ebean ORM`是一个使用纯Java实现的开源ORM框架。 Bean使用JPA注释对实体进行映射。Ebean力求让使用最简单的API帮助开发者从数据库获取有用的数据信息。`Ebean ORM`是轻量级框架，他支持源生sql、分页、大数据查询、批量插入、数据加密、json实用功能。`Ebean ORM`还支持与spring等框架集成，`Ebean orm`与spring集成后，ebean事物交给spring全局管理，省去了不少麻烦。但是官方文档对这部分一笔带过，我初次看文档时一头雾水，就是官方demo也过时有点错误，因此我选择了目前比较新版的`Ebean ORM`与`spring`集成。<!-- more -->
 

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+    <title>Ebean-ORM Spring4 integration-陈开华博客</title>
+    
+
+
+    
+      <meta name="keywords" content="Ebean-ORM, Spring">
+    
+    
+    <meta name="description" content="Ebean ORM是一个使用纯Java实现的开源ORM框架。 Bean使用JPA注释对实体进行映射。Ebean力求让使用最简单的API帮助开发者从数据库获取有用的数据信息。Ebean ORM是轻量级框架，他支持源生sql、分页、大数据查询、批量插入、数据加密、json实用功能。Ebean ORM还支持与spring等框架集成，Ebean orm与spring集成后，ebe... - 陈开华">
+    
+    <meta name="author" content="陈开华">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/bootstrap-3.3.1/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    
+    <!-- Custom styles -->
+    <link href="/assets/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <!-- google code prettify -->
+    <link href="/assets/google-code-prettify/prettify.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <!-- atom & rss feed 
+    <link href="" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+-->
+  </head>
+
+  <body>
+  <!-- Skip to main content -->
+    <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
+
+   <div id="wrap">
+      <nav class="navbar navbar-default bs-docs-bar-top" role="navigation">
+       <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">陈开华博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+		<li><a href="/">Home</a></li>
+		<li><a href="/archive.html">Archive</a></li>
+		<li><a href="/categories.html">Categories</a></li>
+		<li><a href="/tags.html">Tags</a></li>
+		<li><a href="/about.html">About</a></li>
+	  </ul>
+        <!-- site search -->
+ <div class="dropdown navbar-form navbar-right ">
+   <input  id="dLabel" name="word" type="text"  aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="form-control typeahead"   placeholder="搜索">
+  
+  <ul class="dropdown-menu" aria-labelledby="dLabel" id="c">
+    
+  </ul>
+</div>
+
+      
+        </div><!-- /.navbar-collapse -->
+       </div><!-- class="container" -->
+      </nav>
+
+    <!-- doc-container -->
+    <div class="container">
+
+        <div class="row">
+  <div class="col-md-9" role="main">
+
+    <!-- article header -->
+    <div class="page-header">
+        <h1 id="title">
+              Ebean-ORM Spring4 integration 
+        </h1>
+      <div class="meta">
+         
+         08 November 2015</b>
+        
+      </div>
+    </div>
+
+    <!-- article body -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="content bs-docs-container markdown-body">
+
+          <p><code>Ebean ORM</code>是一个使用纯Java实现的开源ORM框架。 Bean使用JPA注释对实体进行映射。Ebean力求让使用最简单的API帮助开发者从数据库获取有用的数据信息。<code>Ebean ORM</code>是轻量级框架，他支持源生sql、分页、大数据查询、批量插入、数据加密、json实用功能。<code>Ebean ORM</code>还支持与spring等框架集成，<code>Ebean orm</code>与spring集成后，ebean事物交给spring全局管理，省去了不少麻烦。但是官方文档对这部分一笔带过，我初次看文档时一头雾水，就是官方demo也过时有点错误，因此我选择了目前比较新版的<code>Ebean ORM</code>与<code>spring</code>集成。<!-- more --></p>
+
+<h3 id="section">开发环境</h3>
+<ul>
+  <li>JDK版本:Oracle JDK8</li>
+  <li>IDE: IDEA</li>
+  <li>构建工具：gradle</li>
+</ul>
+
+<h3 id="section-1">添加依赖</h3>
+<p>本例中使用<code>ebean-orm:6.10.3</code>和<code>spring:4.1.7.RELEASE</code>版本<br />
+<strong>build.gradle</strong>文件中配置依赖</p>
+
+<pre><code class="language-java">apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.avaje.ebeanorm:avaje-ebeanorm-spring:4.5.3'
+    compile 'com.h2database:h2:1.4.189'
+    compile "org.springframework:spring-orm:4.1.7.RELEASE"
+    compile 'org.springframework:spring-aop:4.1.7.RELEASE'
+    testCompile 'org.springframework:spring-test:4.1.7.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.1.7.RELEASE'
+    compile 'org.aspectj:aspectjweaver:1.8.6'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.1'
+}
+
+</code></pre>
+<blockquote>
+  <p><strong>注意</strong>:<code>org.avaje.ebeanorm:avaje-ebeanorm-spring:4.5.3</code>依赖<code>ebean ORM</code>，<code>ebeanorm-spring</code>是ebean提供的spring集成工具。</p>
+</blockquote>
+
+<h3 id="springebean-orm">Spring集成Ebean ORM</h3>
+<p><strong>spring</strong>集成<strong>ebean orm</strong>,其实就是把<code>ebeaon orm</code>的事物交由spring管理。这里使用xml配置的方式配置spring，<code>spring-config.xml</code>为spring配置文件。<br />
+在<strong>spring-config.xml</strong> 文件中，内容如下</p>
+
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+        "&gt;
+
+	&lt;!-- 扫描注解，除去web层注解，web层注解在mvc配置中扫描 --&gt;
+	&lt;context:component-scan
+		base-package="com.chenkaihua.springebean.service"&gt;
+		&lt;context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" /&gt;
+		&lt;context:exclude-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.RestController" /&gt;
+	&lt;/context:component-scan&gt;
+
+	&lt;!-- 开启AOP监听 只对当前配置文件有效 --&gt;
+	&lt;aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true" /&gt;
+
+
+	&lt;tx:annotation-driven transaction-manager="transactionManager"  /&gt;
+
+
+
+	&lt;import resource="spring-ebean.xml"/&gt;
+&lt;/beans&gt;
+</code></pre>
+<blockquote>
+  <p>为了配置更简单查看，我把ebean配置部分独立到<code>spring-ebean.xml</code>文件</p>
+</blockquote>
+
+<p><strong>spring-ebean.xml</strong>文件内容如下:</p>
+
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+        "&gt;
+
+	&lt;bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy"&gt;
+		&lt;constructor-arg&gt;
+			&lt;bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource"&gt;
+				&lt;property name="driverClass" value="org.h2.Driver" /&gt;
+				&lt;property name="url"
+						  value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1" /&gt;
+			&lt;/bean&gt;
+		&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+
+	&lt;!--  Transaction Manager --&gt;
+	&lt;bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"&gt;
+		&lt;property name="dataSource" ref="dataSource"/&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="serverConfig" class="com.avaje.ebean.config.ServerConfig"&gt;
+		&lt;property name="externalTransactionManager"&gt;
+			&lt;bean class="com.avaje.ebean.springsupport.txn.SpringAwareJdbcTransactionManager"/&gt;
+		&lt;/property&gt;
+		&lt;property name="defaultServer" value="true"/&gt;
+
+		&lt;property name="namingConvention"&gt;
+			&lt;bean class="com.avaje.ebean.config.UnderscoreNamingConvention"/&gt;
+		&lt;/property&gt;
+		&lt;property name="name" value="ebeanServer"/&gt;
+
+		&lt;property name="packages"&gt;
+			&lt;list&gt;
+				&lt;value&gt;com.chenkaihua.springebean.entity&lt;/value&gt;
+			&lt;/list&gt;
+		&lt;/property&gt;
+
+		&lt;property name="dataSource" ref="dataSource"/&gt;
+		&lt;!--&lt;property name="disableClasspathSearch" value="true"/&gt;--&gt;
+		&lt;!--是否生成sql文件--&gt;
+		&lt;property name="ddlGenerate" value="false"/&gt;
+		&lt;!--时候启动时读取sql文件，并执行--&gt;
+		&lt;property name="ddlRun" value="false"/&gt;
+	&lt;/bean&gt;
+
+	&lt;!-- Ebean server --&gt;
+	&lt;bean id="ebeanServer" class="com.avaje.ebean.springsupport.factory.EbeanServerFactoryBean"&gt;
+		&lt;property name="serverConfig" ref="serverConfig"/&gt;
+	&lt;/bean&gt;
+
+	&lt;aop:aspectj-autoproxy  /&gt;
+
+	&lt;aop:config&gt;
+		&lt;aop:pointcut id="appService"
+					  expression="execution(* com.chenkaihua.springebean..*Service*.*(..))" /&gt;
+		&lt;aop:advisor advice-ref="txAdvice" pointcut-ref="appService" /&gt;
+	&lt;/aop:config&gt;
+
+	&lt;tx:advice id="txAdvice" transaction-manager="transactionManager"&gt;
+		&lt;tx:attributes&gt;
+			&lt;tx:method name="select*" read-only="true" /&gt;
+			&lt;tx:method name="find*" read-only="true" /&gt;
+			&lt;tx:method name="get*" read-only="true" /&gt;
+			&lt;tx:method name="*" /&gt;
+			&lt;tx:method name="sava*"  /&gt;
+			&lt;tx:method name="update*" /&gt;
+			&lt;tx:method name="delete*" /&gt;
+		&lt;/tx:attributes&gt;
+	&lt;/tx:advice&gt;
+
+
+&lt;/beans&gt;
+</code></pre>
+<blockquote>
+  <p><strong>注意</strong> :配置使用的<code>dataSource</code>类型为<code>org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy</code>,这是一个代理类，spring与ebean-orm集成时必须使用这个类，不然事物不起作用。<code>ebeanServer</code>是ebean-ORM的核心类，也是查询的核心接口。</p>
+</blockquote>
+
+<p>这样配置之后，就可以在service里注入<code>EbeanServer</code>进行数据库操作了。</p>
+
+<h3 id="section-2">怎样使用</h3>
+
+<p>ebean项目部署前，必须要<code>enhance</code>，具体操作请参考我的教程：<a href="/2015/11/08/ebean_orm-enhance-with-gradle">ebean-orm enhance with gradle</a></p>
+
+<pre><code class="language-java">@Service
+public class UserService {
+
+
+    @Autowired
+    EbeanServer ebeanServer;
+
+    public void save(User user){
+        ebeanServer.save(user);
+    }
+
+    public void saveOnThrowException(User user){
+        ebeanServer.save(user);
+        throw new IllegalArgumentException("非法参数！！");
+    }
+
+
+    public List&lt;User&gt; users(){
+        return ebeanServer.find(User.class).findList();
+    }
+
+}
+
+</code></pre>
+<p>如果调用<code>saveOnThrowException()</code>方法，抛出异常，事物回滚，说明spring事物起作用了。</p>
+
+<h3 id="section-3">参考资料</h3>
+<blockquote>
+  <ul>
+    <li>ebean官网文档: <a href="http://ebean-orm.github.io/">http://ebean-orm.github.io</a></li>
+    <li>ebean-github: <a href="https://github.com/ebean-orm/avaje-ebeanorm"> https://github.com/ebean-orm/avaje-ebeanorm</a></li>
+  </ul>
+</blockquote>
+
+
+          
+        </div>
+
+
+   
+
+
+
+  <hr />
+
+
+    
+        <ul class="tag_box inline">
+          <li><i class="glyphicon glyphicon-open"></i></li>
+          
+          
+
+
+  
+     
+    	<li><a href="#j2ee-ref">
+    		j2ee <span>2</span>
+    	</a></li>
+     
+    	<li><a href="#spring-ref">
+    		spring <span>1</span>
+    	</a></li>
+    
+  
+
+
+        </ul>
+      
+
+      
+        <ul class="tag_box inline">
+          <li><i class="glyphicon glyphicon-tags"></i></li>
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#Ebean-ORM-ref">Ebean-ORM <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Spring-ref">Spring <span>1</span></a></li>
+    
+  
+
+
+        </ul>
+      
+
+      <hr />
+  <!-- 上下页 -->
+        <div>
+   
+          <nav>
+  <ul class="pager">
+  
+    <li class="previous "><a href="/2015/11/05/gradle-execute-sql"><span aria-hidden="true">&larr;</span> gradle执行sql初始化数据库</a></li>
+    
+  
+    <li class="next "><a href="/2015/11/08/ebean_orm-enhance-with-gradle"><span aria-hidden="true">&rarr;</span> Ebean-ORM enhance with gradle</a></li>
+    
+  </ul>
+</nav>
+        </div>
+
+
+             <!-- 评论 -->
+        <!-- Duoshuo Comment START -->
+<div class="ds-thread" data-thread-key="/2015/11/08/ebean_orm-spring4-integration" data-title="Ebean-ORM Spring4 integration" data-url="http://www.chenkaihua.com/2015/11/08/ebean_orm-spring4-integration"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"chenkaihua"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- Duoshuo Comment END -->
+
+     
+      </div>
+    </div>
+
+  </div> <!-- class="col-md-9" -->
+  <!-- directory side navigation -->
+  
+  <div class="col-md-3" role="complementary">
+    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+      <ul id="sideNav" class="nav bs-docs-sidenav">
+
+        <!-- code will be generated in application.js -->
+
+      </ul>
+      <a class="back-to-top" href="#top">
+        Back to top
+      </a>
+    </nav>
+  </div> <!-- col-md-3 -->
+  
+</div> <!-- div class="row" -->
+
+
+
+
+
+    </div> <!-- doc-container -->
+
+    </div><!-- div id="wrap" -->
+
+
+    <div id="footer">
+      <div class="container bs-docs-bar-footer">
+          <p><a href="https://github.com/ichenkaihua/ichenkaihua.github.io">Fork me on Github</a> &copy; 2015 by 陈开华. </p>
+      </div>
+    </div>
+
+
+   
+
+ <script src="/assets/jquery-1.11.2.min.js"></script>
+    <script src="/assets/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+    <script src="/assets/js/application.js"></script>
+    <script src="/assets/google-code-prettify/prettify.js"></script>
+    <script src="/assets/jekyll-search.js" type="text/javascript"></script>
+    
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+        /*google-code-prettify*/
+        $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+        prettyPrint();
+
+        /* Tips */
+        $('pre .language-tips').parent().addClass('tom-callout-tips');
+
+        /* A link icon on the left of headers. */
+        $(".bs-docs-container h1,.bs-docs-container h2, .bs-docs-container h3, .bs-docs-container h4, .bs-docs-container h5, .bs-docs-container h6").each(function(i, el) {
+          var $el, icon, id;
+          $el = $(el);
+          id = $el.attr('id');
+          icon = '<span class="glyphicon glyphicon-link"></span>';
+          if (id) {
+             $el.prepend($("<a class='anchor' />").attr("href", "#" + id).html(icon));
+          }
+        })
+
+
+      });
+
+
+      /*jekyll 搜索*/
+        SimpleJekyllSearch({
+        searchInput: document.getElementById('dLabel'),
+        resultsContainer: document.getElementById('c'),
+        json: '/search.json',
+        searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+        noResultsText: '没有搜索到文章',
+        limit: 20,
+        fuzzy: false
+      })
+
+
+    </script>
+       
+   
+
+    
+  </body>
+</html>

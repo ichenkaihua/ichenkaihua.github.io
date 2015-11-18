@@ -5,7 +5,7 @@ tagline: 个人介绍
 header: About
 group: navigation
 ---
-{% include JB/setup %}
+
 
 ## 个人介绍
 

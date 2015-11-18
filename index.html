@@ -3,7 +3,7 @@ title: 陈开华博客
 tagline: 首页
 layout: page
 ---
-{% include JB/setup %}
+
 
 
 
@@ -94,7 +94,6 @@ layout: page
 </ul>
 </nav>
 
-
     </div>
 <div class="col-md-3 hidden-xs">
 
@@ -108,23 +107,39 @@ layout: page
 {% endfor %}  
 </div>
 
+
+
+{% if site.data.github-projects.show  %}
+
+
 <div class="list-group">
-  <div  class="list-group-item ">Github Projects</div>
-  <a href="https://github.com/ichenkaihua/GreenDAO-Simple-Generate" title="用少量注解简化greendao的生成" target="_blank" class="list-group-item">GreenDAO-Simple-Generate</a>
+  <div  class="list-group-item ">{{ site.data.github-projects.title %}}</div>
+
+  {% for project in site.data.github-projects.links %}
+      <a href="{{ project.url }}" title="{{ project.title }}" target="_blank" class="list-group-item">{{ project.name }}</a>
+
+  {% endfor %}
+
+<!--   <a href="https://github.com/ichenkaihua/GreenDAO-Simple-Generate" title="用少量注解简化greendao的生成" target="_blank" class="list-group-item">GreenDAO-Simple-Generate</a>
   <a href="https://github.com/ichenkaihua/ssm-easy-template"   title="spring+springmvc+mybatis+shiro简单集成框架"  target="_blank"  class="list-group-item">ssm-easy-template</a>
-  <a href="https://github.com/ichenkaihua/spring-ebean"  title="spring4+springMVC4+EbeanORM6+flyway+Gradle" target="_blank" class="list-group-item">spring-ebean</a>
+  <a href="https://github.com/ichenkaihua/spring-ebean"  title="spring4+springMVC4+EbeanORM6+flyway+Gradle" target="_blank" class="list-group-item">spring-ebean</a> -->
   
 </div>
+
+{% endif %}
+
+
+{% if site.data.links.show %}
 
 
 <div class="list-group">
-  <div  class="list-group-item ">小伙伴</div>
-  <a href="http://www.weiyf.cn"  target="_blank" class="list-group-item">裕发技术博客 </a>
-  <a href="http://www.chenzhongjin.cn"  target="_blank"  class="list-group-item">仲锦博客博客 </a>
-  <a href="http://www.qiushurong.cn"  target="_blank" class="list-group-item">小树技术博客</a>
-  
+  <div  class="list-group-item ">{{ site.data.links.title }}</div>
+  {% for link in site.data.links.links %}
+  <a href="{{ link.url }}"  target="_blank" class="list-group-item">{{ link.name }} </a> 
+  {% endfor %}
 </div>
 
+{% endif %}
 
 </div>
 

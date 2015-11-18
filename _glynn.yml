@@ -1,0 +1,15 @@
+#markdown扩展格式
+markdown: kramdown
+#pygments: true
+auto: true
+##ftp主机
+ftp_host: 'qxu1152190262.my3w.com'
+##相对ftp根目录路径
+ftp_dir: '/htdocs'
+ftp_passive: false
+## 配置端口等信息
+## optional
+#ftp_port: 21                  # default 21
+ftp_username: 'qxu1152190262'     # default read from stdin
+ftp_password: 'chenhua0204' # default read from stdin
+#ftp_secure: true              # default false

@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>陈开华博客</title>
+ <link href="http://www.chenkaihua.com/" rel="self"/>
+ <link href="http://www.chenkaihua.com"/>
+ <updated>2015-11-18T05:33:59-08:00</updated>
+ <id>http://www.chenkaihua.com</id>
+ <author>
+   <name>陈开华</name>
+   <email>admin@chenkaihua.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>jekyll search via Simple-Jekyll-Search</title>
+   <link href="http://www.chenkaihua.com/2015/11/16/jekyll-search-via-simple_jekyll_search"/>
+   <updated>2015-11-16T00:00:00-08:00</updated>
+   <id>http://www.chenkaihua.com/2015/11/16/jekyll-search-via-simple_jekyll_search</id>
+   <content type="html">&lt;p&gt;这两天换了博客主题，解决了小屏幕不适配问题，也加了些自定义的内容。总之，比较合心意。相对上个博客主题最大变化，就是加入了搜索功能。网络上提供了多种方式解决jekyll搜索的不足，我使用的是&lt;a href=&quot;https://github.com/christian-fei/Simple-Jekyll-Search&quot;&gt;Simple-Jekyll-Search&lt;/a&gt;。&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;常用解决方案&lt;/h2&gt;
+&lt;p&gt;主页有三种方式：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;google/baidu的站内搜索：优点是嵌入简单，缺点是不稳定。&lt;/li&gt;
+  &lt;li&gt;使用jekyll插件，优点是使用简单，但是github-pages不支持插件。&lt;/li&gt;
+  &lt;li&gt;使用javascript实现简单静态搜索，&lt;em&gt;Simple-Jekyll-Search&lt;/em&gt;项目就是这种方式。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;simple-jekyll-search&quot;&gt;Simple-Jekyll-Search的使用&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Simple-Jekyll-Search&lt;/strong&gt;是个开源项目,托管在github:&lt;a href=&quot;https://github.com/christian-fei/Simple-Jekyll-Search&quot;&gt;https://github.com/christian-fei/Simple-Jekyll-Search&lt;/a&gt;，方便的话，给个star。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;下载&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# 下载Simple-jekyll-Search
+git clone https://github.com/christian-fei/Simple-Jekyll-Search.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;searchjson&quot;&gt;配置&lt;code&gt;search.json&lt;/code&gt;文件&lt;/h3&gt;
+&lt;p&gt;进入博客目录，新建&lt;strong&gt;search.json&lt;/strong&gt;文件,内容如下:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;
+[
+  {% for post in site.posts %}
+    {
+      &quot;title&quot;    : &quot;{{ post.title | escape }}&quot;,
+      &quot;category&quot; : &quot;{{ post.category }}&quot;,
+      &quot;tags&quot;     : &quot;{{ post.tags | join: &#39;, &#39; }}&quot;,
+      &quot;url&quot;      : &quot;{{ site.baseurl }}{{ post.url }}&quot;,
+      &quot;date&quot;     : &quot;{{ post.date }}&quot;
+    } {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;search.json&lt;/strong&gt;文件的作用是生成搜索的数据索引，上面的内容能通过标题，tag的关键字搜索，我认为足够了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;嵌入模板&lt;/h3&gt;
+&lt;p&gt;找到页面html模板，把js文件引入到html中，然后指定一个搜索框，比如在&lt;strong&gt;default.html&lt;/strong&gt;文件中:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!-- Html Elements for Search --&amp;gt;
+&amp;lt;div id=&quot;search-container&quot;&amp;gt;
+&amp;lt;input type=&quot;text&quot; id=&quot;search-input&quot; placeholder=&quot;search...&quot;&amp;gt;
+&amp;lt;ul id=&quot;results-container&quot;&amp;gt;&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;!-- Script pointing to jekyll-search.js --&amp;gt;
+&amp;lt;script src=&quot;/bower_components/simple-jekyll-search/dest/jekyll-search.js&quot; type=&quot;text/javascript&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;配置&lt;/h3&gt;
+&lt;p&gt;怎么使用这个搜索呢，非常简单，在&lt;strong&gt;default.html&lt;/strong&gt;中使用javascript配置搜索框和&lt;code&gt;search.json&lt;/code&gt;位置就好了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;    SimpleJekyllSearch({
+        searchInput: document.getElementById(&#39;search-input&#39;),
+        resultsContainer: document.getElementById(&#39;results-container&#39;),
+        json: &#39;/search.json&#39;,
+        searchResultTemplate: &#39;&amp;lt;li&amp;gt;&amp;lt;a href=&quot;{url}&quot; title=&quot;{desc}&quot;&amp;gt;{title}&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&#39;,
+        noResultsText: &#39;没有搜索到文章&#39;,
+        limit: 20,
+        fuzzy: false
+      })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解释下主要的配置项:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;searchInput&lt;/strong&gt;:输入框，配置之后会给输入框添加监听，只要输入框的值发生变化，搜索结果的容器也发生变化。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;resultsContainer&lt;/strong&gt;:存放搜索结果的容器，一般是&lt;code&gt;ul&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;json&lt;/strong&gt;:&lt;code&gt;search.json&lt;/code&gt;的位置&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;searchResultTemplate&lt;/strong&gt;:搜索出的每一项怎么渲染，上例是添加一个&lt;code&gt;li&lt;/code&gt;,元素会添加在&lt;code&gt;resultsContainer&lt;/code&gt;中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这样配置之后，在输入框输入关键字，&lt;code&gt;results-container&lt;/code&gt;就会显示搜索到的结果。&lt;/p&gt;
+
+&lt;h3 id=&quot;bootstrap&quot;&gt;配合bootstrap&lt;/h3&gt;
+&lt;p&gt;上述教程虽然实现了搜索功能，但是搜索效果不太美观。bootstrap是个优秀的前端框架，提供了常用组件。&lt;code&gt;Simple-Jekyll-Search&lt;/code&gt;结合bootstrap的下拉菜单&lt;code&gt;drapdown&lt;/code&gt;组件，比较完美解决搜索外观问题。直接看代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt; &amp;lt;div class=&quot;dropdown navbar-form navbar-right &quot;&amp;gt;
+   &amp;lt;input  id=&quot;dLabel&quot; name=&quot;word&quot; type=&quot;text&quot;  aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot; data-toggle=&quot;dropdown&quot; class=&quot;form-control typeahead&quot;   placeholder=&quot;搜索&quot;&amp;gt;
+  
+  &amp;lt;ul class=&quot;dropdown-menu&quot; aria-labelledby=&quot;dLabel&quot; id=&quot;c&quot;&amp;gt;
+    
+  &amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这段代码的意思是，只要输入框被点击，下拉菜单就显示，配合&lt;strong&gt;Simple-Jekyll-Search&lt;/strong&gt;，实现效果如下:&lt;br /&gt;
+&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/jekyll-search-bootstrap.png&quot; alt=&quot;jekyll-search-bootstrap&quot; /&gt;&lt;br /&gt;
+如果有不明白的地方，查看这篇文章的网页源码就可以看到了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;参考资料&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;https://github.com/christian-fei/Simple-Jekyll-Search&quot;&gt;Simple-Jekyll-Search-Github&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>jekyll中高亮Liquid代码</title>
+   <link href="http://www.chenkaihua.com/2015/11/16/how-to-highlight-liquid-code-in-jekyll"/>
+   <updated>2015-11-16T00:00:00-08:00</updated>
+   <id>http://www.chenkaihua.com/2015/11/16/how-to-highlight-liquid-code-in-jekyll</id>
+   <content type="html">&lt;p&gt;Jekyll 使用&lt;strong&gt;Liquid&lt;/strong&gt; 模板语言供用户调用。jekyll在生成静态页面时，优先处理liquid语法，即把liquid模板的值替换模板变量，比如&lt;code&gt;{{ site.title }}&lt;/code&gt;会替换成&lt;code&gt;_config&lt;/code&gt;里的&lt;code&gt;title&lt;/code&gt;值。这样就产生一个问题，有时需要代码高亮liquid语法，如果像平常高亮java语法一样处理，liquid语法变量会被赋值。比如我要高亮&lt;code&gt;url:{{ site.title }}&lt;/code&gt;，结果却高亮成了&lt;code&gt;url:陈开华博客&lt;/code&gt;。Liquid考虑到这种情况，使用&lt;code&gt;{% raw %}&lt;/code&gt;标签处理替换问题。&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;p&gt;下面是我要高亮的代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+title:{{ site.title }}
+githubname:{{ site.githubname }}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果我这样写	:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+ ```yaml
+title:{{ site.title }}
+githubname:{{ site.githubname }}
+  ```
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;效果是这样的:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; ```yaml
+title:陈开华博客
+githubname:
+  ```
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;正确的写法是:&lt;br /&gt;
+&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/liquid-highlight.png&quot; alt=&quot;liquid-highlight&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;效果是:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+title:{{ site.title }}
+githubname:{{ site.githubname }}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Ebean-ORM enhance with gradle</title>
+   <link href="http://www.chenkaihua.com/2015/11/08/ebean_orm-enhance-with-gradle"/>
+   <updated>2015-11-08T14:12:43-08:00</updated>
+   <id>http://www.chenkaihua.com/2015/11/08/ebean_orm-enhance-with-gradle</id>
+   <content type="html">&lt;p&gt;使用&lt;code&gt;Ebean ORM&lt;/code&gt;有个麻烦的地方，就是每次部署app前，需要&lt;code&gt;enhance&lt;/code&gt;下&lt;code&gt;entity&lt;/code&gt;类的class文件，所谓&lt;code&gt;enhance&lt;/code&gt;，就是加强操作，用于修改实体bean，包括”编织“，”转换“，”字节码操作“等过程。如果没有&lt;code&gt;enhance&lt;/code&gt;就使用ebean orm，则ebean会抛出异常。&lt;code&gt;Ebean ORM&lt;/code&gt;提供了eclipse插件、idea插件、maven插件、ant等解决方案，虽然没有gradle插件支持，不过好在gradle支持ant任务，通过gradle调用ebean提供的ant target，完成编译后自动&lt;code&gt;enhance&lt;/code&gt;操作。&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;gradleant&quot;&gt;gradle调用ant&lt;/h3&gt;
+
+&lt;p&gt;gradle调用ant的一般步骤是&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;定义一个&lt;code&gt;configuration&lt;/code&gt;配置组,就是一个依赖组，和&lt;code&gt;compile&lt;/code&gt;,&lt;code&gt;testCompile&lt;/code&gt;一个性质。&lt;/li&gt;
+  &lt;li&gt;给&lt;code&gt;configuration&lt;/code&gt;定义依赖，ant运行时需要依赖这些包。&lt;/li&gt;
+  &lt;li&gt;使用&lt;code&gt;ant.taskdef&lt;/code&gt;闭包定义一个ant task。&lt;/li&gt;
+  &lt;li&gt;定义一个task，调用步骤3定义的ant。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;build.gradle&lt;/strong&gt;文件:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-groovy&quot;&gt;repositories {
+    mavenCentral()
+}
+
+configurations{
+    ebeanagent
+}
+
+dependencies {
+    ebeanagent &#39;org.avaje.ebeanorm:avaje-ebeanorm-agent:4.7.1&#39;
+}
+
+ant.taskdef(
+        name: &quot;ebeanEnhance&quot;,
+        classname:&quot;com.avaje.ebean.enhance.ant.AntEnhanceTask&quot;,
+        classpath:configurations.ebeanagent.asPath
+
+)
+
+def ebeanEnhance = {dir, packages -&amp;gt;
+    println dir
+    println packages
+    println &#39;============================================&#39;
+    println &#39;  Enhance ebean classes....&#39; + dir
+    println &#39;============================================&#39;
+    ant.ebeanEnhance(classSource: dir,
+            packages: packages,
+            transformArgs: &quot;debug=10&quot;)
+    println &#39;Enhance ebean end....................&#39;
+}
+
+
+
+compileJava.doLast {
+    ebeanEnhance(destinationDir, &quot;com.chenkaihua.springebean.entity.*&quot;)
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里没有定义task调用ant，而是让&lt;code&gt;compileJava&lt;/code&gt;之后&lt;code&gt;enhance&lt;/code&gt;，这样就保证了自动&lt;code&gt;enhance&lt;/code&gt;，相比idea插件等手动&lt;code&gt;enhance&lt;/code&gt;方式，省事多了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;小技巧&lt;/h3&gt;
+&lt;p&gt;使用&lt;strong&gt;IDEA付费版&lt;/strong&gt;时，跑server用idea集成工具，比如tomcat，jetty等，此时按照上述解决办法&lt;code&gt;enhance&lt;/code&gt;后还是不能跑，报错为&lt;strong&gt;com.xxx.entity.User not enhance?&lt;/strong&gt;,说明entity没有&lt;code&gt;enhance&lt;/code&gt;，解决方法如下：&lt;/p&gt;
+
+&lt;p&gt;1.&lt;strong&gt;打开run configurations&lt;/strong&gt;:&lt;br /&gt;
+&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/idea-run-config.png&quot; alt=&quot;idea-run-configuration&quot; /&gt;&lt;br /&gt;
+2.&lt;strong&gt;增加build前的gradle task为’compileJava’&lt;/strong&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/idea-run-config-view.png&quot; alt=&quot;idea-run-config-view&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/idea-run-config-view-add-task-pop.png&quot; alt=&quot;idea-run-config-view-add-task-pop&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/idea-run-config-select-gradle-task.png&quot; alt=&quot;idea-run-config-select-gradle-task&quot; /&gt;&lt;br /&gt;
+3. &lt;strong&gt;调整顺序&lt;/strong&gt;：&lt;br /&gt;
+&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/idea-run-config-final.png&quot; alt=&quot;idea-run-config-final&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果是使用&lt;code&gt;gretty&lt;/code&gt;，&lt;code&gt;jetty&lt;/code&gt;等插件部署app，则不需要add这个task。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;参考资料&lt;/h3&gt;
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;http://my.oschina.net/someok/blog/184078&quot;&gt;Ebean 3 应用纯心理感受 -  郁也风的个人空间 - 开源中国社区&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Ebean-ORM Spring4 integration</title>
+   <link href="http://www.chenkaihua.com/2015/11/08/ebean_orm-spring4-integration"/>
+   <updated>2015-11-08T11:53:03-08:00</updated>
+   <id>http://www.chenkaihua.com/2015/11/08/ebean_orm-spring4-integration</id>
+   <content type="html">&lt;p&gt;&lt;code&gt;Ebean ORM&lt;/code&gt;是一个使用纯Java实现的开源ORM框架。 Bean使用JPA注释对实体进行映射。Ebean力求让使用最简单的API帮助开发者从数据库获取有用的数据信息。&lt;code&gt;Ebean ORM&lt;/code&gt;是轻量级框架，他支持源生sql、分页、大数据查询、批量插入、数据加密、json实用功能。&lt;code&gt;Ebean ORM&lt;/code&gt;还支持与spring等框架集成，&lt;code&gt;Ebean orm&lt;/code&gt;与spring集成后，ebean事物交给spring全局管理，省去了不少麻烦。但是官方文档对这部分一笔带过，我初次看文档时一头雾水，就是官方demo也过时有点错误，因此我选择了目前比较新版的&lt;code&gt;Ebean ORM&lt;/code&gt;与&lt;code&gt;spring&lt;/code&gt;集成。&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;开发环境&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;JDK版本:Oracle JDK8&lt;/li&gt;
+  &lt;li&gt;IDE: IDEA&lt;/li&gt;
+  &lt;li&gt;构建工具：gradle&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;添加依赖&lt;/h3&gt;
+&lt;p&gt;本例中使用&lt;code&gt;ebean-orm:6.10.3&lt;/code&gt;和&lt;code&gt;spring:4.1.7.RELEASE&lt;/code&gt;版本&lt;br /&gt;
+&lt;strong&gt;build.gradle&lt;/strong&gt;文件中配置依赖&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;apply plugin: &#39;war&#39;
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile &#39;org.avaje.ebeanorm:avaje-ebeanorm-spring:4.5.3&#39;
+    compile &#39;com.h2database:h2:1.4.189&#39;
+    compile &quot;org.springframework:spring-orm:4.1.7.RELEASE&quot;
+    compile &#39;org.springframework:spring-aop:4.1.7.RELEASE&#39;
+    testCompile &#39;org.springframework:spring-test:4.1.7.RELEASE&#39;
+    compile &#39;org.springframework:spring-webmvc:4.1.7.RELEASE&#39;
+    compile &#39;org.aspectj:aspectjweaver:1.8.6&#39;
+    compile &#39;com.fasterxml.jackson.core:jackson-databind:2.6.1&#39;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;:&lt;code&gt;org.avaje.ebeanorm:avaje-ebeanorm-spring:4.5.3&lt;/code&gt;依赖&lt;code&gt;ebean ORM&lt;/code&gt;，&lt;code&gt;ebeanorm-spring&lt;/code&gt;是ebean提供的spring集成工具。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;springebean-orm&quot;&gt;Spring集成Ebean ORM&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;spring&lt;/strong&gt;集成&lt;strong&gt;ebean orm&lt;/strong&gt;,其实就是把&lt;code&gt;ebeaon orm&lt;/code&gt;的事物交由spring管理。这里使用xml配置的方式配置spring，&lt;code&gt;spring-config.xml&lt;/code&gt;为spring配置文件。&lt;br /&gt;
+在&lt;strong&gt;spring-config.xml&lt;/strong&gt; 文件中，内容如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&amp;lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+	xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+	xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+	xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+        &quot;&amp;gt;
+
+	&amp;lt;!-- 扫描注解，除去web层注解，web层注解在mvc配置中扫描 --&amp;gt;
+	&amp;lt;context:component-scan
+		base-package=&quot;com.chenkaihua.springebean.service&quot;&amp;gt;
+		&amp;lt;context:exclude-filter type=&quot;annotation&quot;
+			expression=&quot;org.springframework.stereotype.Controller&quot; /&amp;gt;
+		&amp;lt;context:exclude-filter type=&quot;annotation&quot;
+			expression=&quot;org.springframework.web.bind.annotation.RestController&quot; /&amp;gt;
+	&amp;lt;/context:component-scan&amp;gt;
+
+	&amp;lt;!-- 开启AOP监听 只对当前配置文件有效 --&amp;gt;
+	&amp;lt;aop:aspectj-autoproxy expose-proxy=&quot;true&quot; proxy-target-class=&quot;true&quot; /&amp;gt;
+
+
+	&amp;lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;  /&amp;gt;
+
+
+
+	&amp;lt;import resource=&quot;spring-ebean.xml&quot;/&amp;gt;
+&amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;为了配置更简单查看，我把ebean配置部分独立到&lt;code&gt;spring-ebean.xml&lt;/code&gt;文件&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;spring-ebean.xml&lt;/strong&gt;文件内容如下:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&amp;lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+	   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	   xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+	   xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+	   xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+        &quot;&amp;gt;
+
+	&amp;lt;bean id=&quot;dataSource&quot; class=&quot;org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy&quot;&amp;gt;
+		&amp;lt;constructor-arg&amp;gt;
+			&amp;lt;bean class=&quot;org.springframework.jdbc.datasource.SimpleDriverDataSource&quot;&amp;gt;
+				&amp;lt;property name=&quot;driverClass&quot; value=&quot;org.h2.Driver&quot; /&amp;gt;
+				&amp;lt;property name=&quot;url&quot;
+						  value=&quot;jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1&quot; /&amp;gt;
+			&amp;lt;/bean&amp;gt;
+		&amp;lt;/constructor-arg&amp;gt;
+	&amp;lt;/bean&amp;gt;
+
+	&amp;lt;!--  Transaction Manager --&amp;gt;
+	&amp;lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&amp;gt;
+		&amp;lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&amp;gt;
+	&amp;lt;/bean&amp;gt;
+
+	&amp;lt;bean id=&quot;serverConfig&quot; class=&quot;com.avaje.ebean.config.ServerConfig&quot;&amp;gt;
+		&amp;lt;property name=&quot;externalTransactionManager&quot;&amp;gt;
+			&amp;lt;bean class=&quot;com.avaje.ebean.springsupport.txn.SpringAwareJdbcTransactionManager&quot;/&amp;gt;
+		&amp;lt;/property&amp;gt;
+		&amp;lt;property name=&quot;defaultServer&quot; value=&quot;true&quot;/&amp;gt;
+
+		&amp;lt;property name=&quot;namingConvention&quot;&amp;gt;
+			&amp;lt;bean class=&quot;com.avaje.ebean.config.UnderscoreNamingConvention&quot;/&amp;gt;
+		&amp;lt;/property&amp;gt;
+		&amp;lt;property name=&quot;name&quot; value=&quot;ebeanServer&quot;/&amp;gt;
+
+		&amp;lt;property name=&quot;packages&quot;&amp;gt;
+			&amp;lt;list&amp;gt;
+				&amp;lt;value&amp;gt;com.chenkaihua.springebean.entity&amp;lt;/value&amp;gt;
+			&amp;lt;/list&amp;gt;
+		&amp;lt;/property&amp;gt;
+
+		&amp;lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&amp;gt;
+		&amp;lt;!--&amp;lt;property name=&quot;disableClasspathSearch&quot; value=&quot;true&quot;/&amp;gt;--&amp;gt;
+		&amp;lt;!--是否生成sql文件--&amp;gt;
+		&amp;lt;property name=&quot;ddlGenerate&quot; value=&quot;false&quot;/&amp;gt;
+		&amp;lt;!--时候启动时读取sql文件，并执行--&amp;gt;
+		&amp;lt;property name=&quot;ddlRun&quot; value=&quot;false&quot;/&amp;gt;
+	&amp;lt;/bean&amp;gt;
+
+	&amp;lt;!-- Ebean server --&amp;gt;
+	&amp;lt;bean id=&quot;ebeanServer&quot; class=&quot;com.avaje.ebean.springsupport.factory.EbeanServerFactoryBean&quot;&amp;gt;
+		&amp;lt;property name=&quot;serverConfig&quot; ref=&quot;serverConfig&quot;/&amp;gt;
+	&amp;lt;/bean&amp;gt;
+
+	&amp;lt;aop:aspectj-autoproxy  /&amp;gt;
+
+	&amp;lt;aop:config&amp;gt;
+		&amp;lt;aop:pointcut id=&quot;appService&quot;
+					  expression=&quot;execution(* com.chenkaihua.springebean..*Service*.*(..))&quot; /&amp;gt;
+		&amp;lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut-ref=&quot;appService&quot; /&amp;gt;
+	&amp;lt;/aop:config&amp;gt;
+
+	&amp;lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&amp;gt;
+		&amp;lt;tx:attributes&amp;gt;
+			&amp;lt;tx:method name=&quot;select*&quot; read-only=&quot;true&quot; /&amp;gt;
+			&amp;lt;tx:method name=&quot;find*&quot; read-only=&quot;true&quot; /&amp;gt;
+			&amp;lt;tx:method name=&quot;get*&quot; read-only=&quot;true&quot; /&amp;gt;
+			&amp;lt;tx:method name=&quot;*&quot; /&amp;gt;
+			&amp;lt;tx:method name=&quot;sava*&quot;  /&amp;gt;
+			&amp;lt;tx:method name=&quot;update*&quot; /&amp;gt;
+			&amp;lt;tx:method name=&quot;delete*&quot; /&amp;gt;
+		&amp;lt;/tx:attributes&amp;gt;
+	&amp;lt;/tx:advice&amp;gt;
+
+
+&amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt; :配置使用的&lt;code&gt;dataSource&lt;/code&gt;类型为&lt;code&gt;org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy&lt;/code&gt;,这是一个代理类，spring与ebean-orm集成时必须使用这个类，不然事物不起作用。&lt;code&gt;ebeanServer&lt;/code&gt;是ebean-ORM的核心类，也是查询的核心接口。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这样配置之后，就可以在service里注入&lt;code&gt;EbeanServer&lt;/code&gt;进行数据库操作了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;怎样使用&lt;/h3&gt;
+
+&lt;p&gt;ebean项目部署前，必须要&lt;code&gt;enhance&lt;/code&gt;，具体操作请参考我的教程：&lt;a href=&quot;/2015/11/08/ebean_orm-enhance-with-gradle&quot;&gt;ebean-orm enhance with gradle&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Service
+public class UserService {
+
+
+    @Autowired
+    EbeanServer ebeanServer;
+
+    public void save(User user){
+        ebeanServer.save(user);
+    }
+
+    public void saveOnThrowException(User user){
+        ebeanServer.save(user);
+        throw new IllegalArgumentException(&quot;非法参数！！&quot;);
+    }
+
+
+    public List&amp;lt;User&amp;gt; users(){
+        return ebeanServer.find(User.class).findList();
+    }
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果调用&lt;code&gt;saveOnThrowException()&lt;/code&gt;方法，抛出异常，事物回滚，说明spring事物起作用了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;参考资料&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;ebean官网文档: &lt;a href=&quot;http://ebean-orm.github.io/&quot;&gt;http://ebean-orm.github.io&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;ebean-github: &lt;a href=&quot;https://github.com/ebean-orm/avaje-ebeanorm&quot;&gt; https://github.com/ebean-orm/avaje-ebeanorm&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>gradle执行sql初始化数据库</title>
+   <link href="http://www.chenkaihua.com/2015/11/05/gradle-execute-sql"/>
+   <updated>2015-11-05T12:07:51-08:00</updated>
+   <id>http://www.chenkaihua.com/2015/11/05/gradle-execute-sql</id>
+   <content type="html">&lt;p&gt;gradle是目前java应用最强大的自动化构建工具。gradle以groovy语言基础，基于DSL（领域特定语言)语法。因为基于groovy，所以java能做的事情，gradle都能做。由于gradle基于DSL语法，因此在配置gradle时，非常简洁灵活。&lt;br /&gt;
+上面说了，gradle基于groovy语言，groovy又基于java，因此gradle无所不能。项目开发时，要在本地环境调试应用，涉及到数据库的初始化等步骤，技术难度不大，却要花费些时间。gradle完全可以帮助我们初始化数据库。&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;gradlegradle-init&quot;&gt;新建gradle目,直接使用&lt;code&gt;gradle init&lt;/code&gt;命令：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;mkdir project_demo
+cd project_demo
+# 生成build.gradle,settiongs.gradle等信息
+gradle init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;buildgradle&quot;&gt;配置&lt;code&gt;build.gradle&lt;/code&gt;&lt;/h4&gt;
+
+&lt;p&gt;1.定义一个&lt;code&gt;configuration&lt;/code&gt;。所谓&lt;code&gt;configuration&lt;/code&gt;，就是一个依赖组组名，&lt;code&gt;compile&lt;/code&gt; &lt;code&gt;testCompile&lt;/code&gt;就是两个&lt;code&gt;configuration&lt;/code&gt;。比如定义名字为&lt;code&gt;driver&lt;/code&gt;的&lt;code&gt;configuration&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-groovy&quot;&gt;configurations {
+    driver
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2.给&lt;code&gt;driver&lt;/code&gt;配置依赖,，使用mysql数据库。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dependencies {
+    testCompile group: &#39;junit&#39;, name: &#39;junit&#39;, version: &#39;4.11&#39;
+   driver &#39;mysql:mysql-connector-java:5.1.37&#39;
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3.定义task，执行初始化任务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;import groovy.sql.Sql;
+
+task loadMySqlDriver &amp;lt;&amp;lt; {
+    description=&#39;load Mysql Driver Class by ClassLoader&#39;
+    URLClassLoader loader = GroovyObject.class.classLoader
+    configurations.driver.each { File file -&amp;gt;
+        loader.addURL(file.toURL())
+    }
+}
+
+Sql getSql() {
+    def props = [user: &quot;github&quot;, password: &quot;github-pass&quot;, allowMultiQueries: &#39;true&#39;] as Properties
+    def url = &quot;jdbc:mysql://localhost:3306&quot;
+    def driver = &quot;com.mysql.jdbc.Driver&quot;
+    Sql.newInstance(url, props, driver)
+
+
+}
+
+task initDB(dependsOn: loadMySqlDriver) &amp;lt;&amp;lt; {
+    description=&#39;get file text from sql/backup.sql and import to mysql&#39;
+    Sql sql = getSql()
+    def text =  file(&quot;sql/backup.sql&quot;).text
+    sql.execute(text)
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;:上述代码有个&lt;code&gt;loadMySqlDriver&lt;/code&gt;的task，作用是载入mysql驱动文件，这可能是gradle的bug，如果不显式的载入，会抛出&lt;code&gt;ClassNotFoundException&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;下面是&lt;code&gt;sql/backup.sql&lt;/code&gt;文件:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;CREATE DATABASE  IF NOT EXISTS `demo` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `demo`;
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `name` char(40) DEFAULT NULL,
+ `password` char(50) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+INSERT INTO user VALUES(null,&#39;chenkaihua&#39;,&#39;ckh-pass&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;完成所有配置的&lt;code&gt;build.gradle&lt;/code&gt;代码如下:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;import groovy.sql.Sql;
+
+group &#39;com.chenkaihua&#39;
+version &#39;1.0-SNAPSHOT&#39;
+
+
+apply plugin: &#39;java&#39;
+
+
+configurations {
+    driver
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: &#39;junit&#39;, name: &#39;junit&#39;, version: &#39;4.11&#39;
+    driver &#39;mysql:mysql-connector-java:5.1.37&#39;
+
+
+}
+
+task loadMySqlDriver &amp;lt;&amp;lt; {
+    description=&#39;load Mysql Driver Class by ClassLoader&#39;
+    URLClassLoader loader = GroovyObject.class.classLoader
+    configurations.driver.each { File file -&amp;gt;
+        loader.addURL(file.toURL())
+    }
+}
+
+Sql getSql() {
+    def props = [user: &quot;github&quot;, password: &quot;github-pass&quot;, allowMultiQueries: &#39;true&#39;] as Properties
+    def url = &quot;jdbc:mysql://localhost:3306&quot;
+    def driver = &quot;com.mysql.jdbc.Driver&quot;
+    Sql.newInstance(url, props, driver)
+
+
+}
+
+task initDB(dependsOn: loadMySqlDriver) &amp;lt;&amp;lt; {
+    description=&#39;get file text from sql/backup.sql and import to mysql&#39;
+    Sql sql = getSql()
+    def text =  file(&quot;sql/backup.sql&quot;).text
+    sql.execute(text)
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section&quot;&gt;初始化数据库&lt;/h4&gt;
+
+&lt;p&gt;接下来就是执行&lt;code&gt;initDB&lt;/code&gt;这个任务,用于初始化数据库:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gradle initDB
+&lt;/code&gt;&lt;/pre&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>linux下获取硬盘容量使用情况，开机挂载分区</title>
+   <link href="http://www.chenkaihua.com/2015/11/05/linux-hard-disk-infomation"/>
+   <updated>2015-11-05T05:57:52-08:00</updated>
+   <id>http://www.chenkaihua.com/2015/11/05/linux-hard-disk-infomation</id>
+   <content type="html">&lt;p&gt;使用linux时经常需要获取硬盘分区信息、容量大小，文件大小等信息。linux提供了&lt;code&gt;df&lt;/code&gt; &lt;code&gt;du&lt;/code&gt;等命令提供上述信息。经常在linux下需要开机挂载硬盘分区，linux提供了简单的解决方法。&lt;br /&gt;
+&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;查看硬盘使用情况&lt;/h3&gt;
+&lt;p&gt;主要有两个命令:&lt;code&gt;df&lt;/code&gt;,&lt;code&gt;du&lt;/code&gt;，一个获取分区使用情况，一个获取目录、文件的使用情况。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;df&lt;/strong&gt; :获取已经挂载了的分区使用情况，可以显示总空间、剩余空间、使用百分比、挂载点等信息。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;du&lt;/strong&gt; :获取目录或文件的使用情况，显示大小等信息。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;df&quot;&gt;df的使用&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;必要参数：
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code&gt;-a&lt;/code&gt; :全部文件系统列表&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-h&lt;/code&gt; :方便阅读方式显示&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-H&lt;/code&gt; :等于“-h”，但是计算式，1K=1000，而不是1K=1024&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-i&lt;/code&gt;: 显示inode信息&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-k&lt;/code&gt;: 区块为1024字节&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-l&lt;/code&gt;: 只显示本地文件系统&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-m&lt;/code&gt;: 区块为1048576字节&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;--no-sync&lt;/code&gt; : 忽略 sync 命令&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-P&lt;/code&gt;:  输出格式为POSIX&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;--sync&lt;/code&gt; : 在取得磁盘信息前，先执行sync命令&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-T&lt;/code&gt; 文件系统类型&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;选择参数：
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code&gt;--block-size=&amp;lt;区块大小&amp;gt;&lt;/code&gt;: 指定区块大小&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-t&amp;lt;文件系统类型&amp;gt;&lt;/code&gt; : 只显示选定文件系统的磁盘信息&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-x&amp;lt;文件系统类型&amp;gt; &lt;/code&gt; :不显示选定文件系统的磁盘信息&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;--help&lt;/code&gt; : 显示帮助信息&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;--version&lt;/code&gt; : 显示版本信息&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;df常用命令:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#获取已挂载分区的使用情况
+df -h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/blkid-screen.png&quot; alt=&quot;df-screen&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;du&quot;&gt;du的使用&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;命令格式：
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code&gt;du [选项][文件]&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;命令功能：显示每个文件和目录的磁盘使用空间。&lt;/li&gt;
+  &lt;li&gt;命令参数：
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code&gt;-a或-all&lt;/code&gt; : 显示目录中个别文件的大小。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-b或-bytes&lt;/code&gt; :显示目录或文件大小时，以byte为单位。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-c或--total&lt;/code&gt;  除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-k或--kilobytes&lt;/code&gt;  以KB(1024bytes)为单位输出。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-m或--megabytes&lt;/code&gt;  以MB为单位输出。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-s或--summarize&lt;/code&gt;  仅显示总计，只列出最后加总的值。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-h或--human-readable&lt;/code&gt;  以K，M，G为单位，提高信息的可读性。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-x或--one-file-xystem&lt;/code&gt;  以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-L&amp;lt;符号链接&amp;gt;或--dereference&amp;lt;符号链接&amp;gt;&lt;/code&gt; 显示选项中所指定符号链接的源文件大小。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-S或--separate-dirs&lt;/code&gt;   显示个别目录的大小时，并不含其子目录的大小。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-X&amp;lt;文件&amp;gt;或--exclude-from=&amp;lt;文件&amp;gt; &lt;/code&gt; 在&lt;文件&gt;指定目录或文件。&lt;/文件&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;--exclude=&amp;lt;目录或文件&amp;gt;  &lt;/code&gt;       略过指定的目录或文件。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-D或--dereference-args&lt;/code&gt;   显示指定符号链接的源文件大小。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-H或--si &lt;/code&gt; 与-h参数相同，但是K，M，G是以1000为换算单位。&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;-l或--count-links &lt;/code&gt;  重复计算硬件链接的文件。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;du常用命令&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 获取当前目录的大小
+du -sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/du-screen.png&quot; alt=&quot;du-screen&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;开机挂载硬盘分区&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;查看硬盘分区:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code&gt;sudo fdisk  -l&lt;/code&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/fdisk.png&quot; alt=&quot;fdisk-screen&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;查看硬盘UUID:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code&gt;sudo blkid&lt;/code&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/blkid-screen.png&quot; alt=&quot;blkid-screen&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;修改/etc/fstab：
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code&gt;sudo vim /etc/fstab&lt;/code&gt;，后面添加&lt;br /&gt;
+&lt;code&gt;
+UUID=41baef7a-70fa-4bd0-8ea0-25be9c5ef643(要挂载的硬盘如sdb的UUID)   /mnt(要挂载的目录)  ext3(文件类型)  default  0 0
+&lt;/code&gt;&lt;br /&gt;
+比如我的:&lt;br /&gt;
+&lt;img src=&quot;http://7xivpo.com1.z0.glb.clouddn.com/fstabl-cat.png&quot; alt=&quot;fstab-cat-screen&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;重启&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;参考资料&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/peida/archive/2012/12/07/2806483.html&quot; target=&quot;_blank&quot;&gt;每天一个linux命令（33）：df 命令-博客园&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/peida/archive/2012/12/10/2810755.html&quot; target=&quot;_blank&quot;&gt;每天一个linux命令（34）：du 命令-博客园&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://blog.chinaunix.net/uid-30044407-id-4850756.html&quot; target=&quot;_blank&quot;&gt;Ubuntu 硬盘自动挂载-Flowers_World-ChinaUnix博客&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>ftp上传jekyll站点工具：Glynn使用方法</title>
+   <link href="http://www.chenkaihua.com/2015/11/03/use-glynn"/>
+   <updated>2015-11-03T04:05:47-08:00</updated>
+   <id>http://www.chenkaihua.com/2015/11/03/use-glynn</id>
+   <content type="html">&lt;p&gt;看jekyll文档时，发现个通过ftp上传jekyll站点的的小工具 &lt;a href=&quot;https://github.com/dmathieu/glynn&quot;&gt;Glynn&lt;/a&gt;。本人刚好有个阿里云的虚拟主机，正愁浪费，正好派上用场。下面介绍下怎么使用Glynn&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;介绍&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Glynn offers you a bin to easily send a jekyll powered blog to your host through FTP.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;github地址： &lt;a href=&quot;https://github.com/dmathieu/glynn&quot;&gt;https://github.com/dmathieu/glynn&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;安装&lt;/h3&gt;
+
+&lt;p&gt;首先需要安装&lt;code&gt;gem&lt;/code&gt; ，没安装的这里有&lt;a href=&quot;https://rubygems.org/pages/download&quot;&gt;教程&lt;/a&gt;&lt;br /&gt;
+然后安装glynn:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install glynn --source http://gemcutter.org
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;配置&lt;/h3&gt;
+&lt;p&gt;编辑&lt;code&gt;_config.yml&lt;/code&gt;或者新建&lt;code&gt;_glynn.yml&lt;/code&gt;文件，建议新建&lt;code&gt;_glynn.yml&lt;/code&gt;,里面配置的是ftp信息。之后填入配置信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#markdown扩展格式
+markdown: rdiscount
+pygments: true
+auto: true
+#ftp主机
+ftp_host: &#39;dmathieu.com&#39;
+#相对ftp根目录路径
+ftp_dir: &#39;/web/site/root&#39;
+ftp_passive: false
+# 配置端口等信息
+# optional
+ftp_port: 21                  # default 21
+ftp_username: &#39;your_user&#39;     # default read from stdin
+ftp_password: &#39;your_ftp_pass&#39; # default read from stdin
+ftp_secure: true              # default false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;使用&lt;/h3&gt;
+&lt;p&gt;一个简洁的命令:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;glynn
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果配置信息正确，就可以在命令行看到文件传输的进度信息。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;题外话&lt;/h3&gt;
+&lt;p&gt;如果jekyll项目托管在github等站点时，为了避免ftp信息泄露，应该忽略&lt;code&gt;_glynn.yml&lt;/code&gt;文件，ftp的配置文件就不会上传到远程仓库。因此需要编辑&lt;code&gt;.gitignore&lt;/code&gt;文件,加入一行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;_glynn.yml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ok,大功告成!&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>博客再次搬家</title>
+   <link href="http://www.chenkaihua.com/2015/11/02/blog-move"/>
+   <updated>2015-11-02T14:38:05-08:00</updated>
+   <id>http://www.chenkaihua.com/2015/11/02/blog-move</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;使用博客一年有余,经历了两次迁移，第一次迁移由无需备案的香港虚假主机迁移到免费的需要备案的阿里云虚拟主机，访问速度有加快，貌似seo也有提升。第二次就是这次，由阿里云主机迁移到&lt;code&gt;github pages&lt;/code&gt;，众所周知，我天朝对访问外国网站都出奇的慢，百度对外网的收录也不积极。考虑再三，决定迁移到&lt;code&gt;github&lt;/code&gt;，因为我追求的是简洁和效率，有这就足够了！下面说下迁移的原因&lt;!-- more --&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;wordpress&quot;&gt;wordpress不适合程序员写文章&lt;/h2&gt;
+&lt;p&gt;一年多前,初次看到&lt;code&gt;wordpress&lt;/code&gt;，心中感叹道：竟然有如此快捷的方式搭建博客！！只需要php环境的虚拟主机，一个域名，一个mysql数据库，然后把wordpress代码通过ftp传到虚拟主机上，接着通过wordpress引导，不需要其他知识，一个博客就诞生了。通过丰富的插件和主题，制定符合自己风格的博客。对于普通用户来说，搭建博客的技术门槛也不高，我不会任何编程语言，但这并不影响我搭建博客！&lt;/p&gt;
+
+&lt;p&gt;尽管&lt;code&gt;wordpress&lt;/code&gt;如此的强大和方便，但是对于程序员来说，wordpress并非最好的选择，我认为原因有如下:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;程序员追求简洁、高效，&lt;code&gt;wordpress&lt;/code&gt;发布一篇技术文章相当费时。&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;wordpress&lt;/code&gt;对&lt;code&gt;markdown&lt;/code&gt;支持不足，代码里的&lt;code&gt;&amp;lt;&lt;/code&gt;等符合经常被转义成html代码&lt;/li&gt;
+  &lt;li&gt;程序员更注重博客内容，而非样式&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;github pages&lt;/code&gt;免费，虚拟主机一般需要收费。当然，这是次要原因。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以前在&lt;code&gt;wordpress&lt;/code&gt;写一篇技术文章需要两小时，如果用&lt;code&gt;markdown&lt;/code&gt;写，半小时就够了，&lt;code&gt;wordpress&lt;/code&gt;对&lt;code&gt;markdown&lt;/code&gt;的先天性支持不足，就是用markdown插件，也会出现写莫名其妙的问题，最深刻的就是代码李的&lt;code&gt;&amp;lt;&lt;/code&gt;等特殊符号会转义成html代码。&lt;/p&gt;
+
+&lt;h2 id=&quot;markdownjekyllmarkdown&quot;&gt;markdown简洁高效，jekyll对markdown支持完善&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;markdown&lt;/code&gt;等标记语言解决了html标签的冗杂定义。&lt;code&gt;markdown&lt;/code&gt;里写一个h1元素是&lt;code&gt;# this is h1 title&lt;/code&gt;,而html里是&lt;code&gt;&amp;lt;h1&amp;gt;this is title&amp;lt;/h1&amp;gt;&lt;/code&gt;，这只是最简单的对比，&lt;code&gt;markdown&lt;/code&gt;比html简洁很多。使用&lt;code&gt;markdown&lt;/code&gt;这些标记语言的好处之一是：我们可以高效的撰写博客，而只是关注博客的内容。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;jekyll&lt;/code&gt;的作用是将纯文本转换为静态博客网站，他充当一个转换者作用，我们只需要用&lt;code&gt;markdown&lt;/code&gt;写好博客，至于怎么生成html页面，那是&lt;code&gt;jekyll&lt;/code&gt;的工作。&lt;code&gt;jekyll&lt;/code&gt;对&lt;code&gt;markdown&lt;/code&gt;等标记语言支持相当完善，几乎所有markdown扩展格式都支持。同时，&lt;code&gt;jekyll&lt;/code&gt;可以高度自定义，可以从网络上获取各种漂亮模板，也可以自己写模板。&lt;code&gt;jekyll&lt;/code&gt;的这些功能再次降低了搭建博客的工作量，真正最大化做到了关注博客内容本身，其他的事情，&lt;code&gt;jekyll&lt;/code&gt;都尽力帮我们做了。&lt;/p&gt;
+
+&lt;h2 id=&quot;github-pages-jekyll&quot;&gt;github pages 免费支持jekyll，支持域名绑定&lt;/h2&gt;
+
+&lt;p&gt;虽然&lt;code&gt;jekyll&lt;/code&gt;很强大，但怎么花最小的成本搭建&lt;code&gt;jekyll&lt;/code&gt;博客呢。这时就有必要提高鼎鼎大名的github了，github推出了&lt;code&gt;github pages&lt;/code&gt;服务，只需要在github上建立&lt;code&gt;name.github.io&lt;/code&gt;仓库，就可以用&lt;code&gt;name.github.io&lt;/code&gt;访问github用户主页。github page通过&lt;code&gt;jekyll&lt;/code&gt;来生成静态网页，用户只需要提交&lt;code&gt;jekyll&lt;/code&gt;文本文件，就可以自定义站点。通过&lt;code&gt;git&lt;/code&gt;版本控制工具，很轻松就能发布新文章。&lt;/p&gt;
+
+&lt;p&gt;github pages还提供域名绑定功能。也就是说，你只需要个域名，然后设置下dns，就可以通过自己的域名访问github主页。这就相当于github给你提供了免费的主机，尽管这主机只支持静态内容。&lt;/p&gt;
+
+&lt;p&gt;当然&lt;code&gt;github pages&lt;/code&gt;也有限制。&lt;code&gt;github pages&lt;/code&gt;最多支持300Mb空间，你可能觉得空间太小，但是我认为，通过七牛等免费的存储工具，把图片视频等大文件放在七牛服务器上，在&lt;code&gt;github pages&lt;/code&gt;使用外链链接这些资源，既满足了空间问题，又提高了国内访问速度。&lt;/p&gt;
+
+&lt;p&gt;至于怎么搭建和使用&lt;code&gt;github pages&lt;/code&gt;，网上有多篇教程。推荐使用google搜索，搜索出来的文章更有质量，毕竟，翻google的墙有很多方式。&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ 
+</feed>
