@@ -2,7 +2,7 @@
 layout: post
 title: "java去除https证书验证"
 description: "java去除https证书验证"
-category: j2se
+category: java
 fullwidth: true
 tags: [https证书,java]
 date: 2015-12-14 17:53:53
