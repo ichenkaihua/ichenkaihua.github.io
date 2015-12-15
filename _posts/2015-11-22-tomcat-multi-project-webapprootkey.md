@@ -3,6 +3,7 @@ layout: post
 title: "解决 Choose unique values for the 'webAppRootKey' context-param in your web.xml files! 错误"
 description: "tomcat multi project WebAppRootKey ,Choose unique values for the 'webAppRootKey' context-param in your web.xml files!"
 category: j2ee
+fullwidth: true
 tags: [tomcat]
 date: 2015-11-22 14:38:19
 ---
