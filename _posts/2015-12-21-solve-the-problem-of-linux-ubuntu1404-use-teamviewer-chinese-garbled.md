@@ -15,19 +15,19 @@ Teamviewer是优秀的远程控制软件，支持文件传输，视频录制，�
 
 **解决方法**
 
-1. windows上或者网络上下载宋体字体(`simsun.ttc `,`simsun.ttf`)
+1 windows上或者网络上下载宋体字体(`simsun.ttc `,`simsun.ttf`)
 
 ```shell
 wget http://down5.pc6.com/qd3/simsun.zip
 unzip simsun.zip
 ```
-2. 把字体复制到`/opt/teamviewer/tv_bin/wine/share/wine/fonts`目录
+2.把字体复制到`/opt/teamviewer/tv_bin/wine/share/wine/fonts`目录
 
 ```shell
  sudo cp simsun.tt* /opt/teamviewer/tv_bin/wine/share/wine/fonts/
 ```
 
-3. 重启teamviewer
+3.重启teamviewer
 
 最终效果如下：
 ![teamviewer_normal](http://7xivpo.com1.z0.glb.clouddn.com/teamviewer_normal.png)
