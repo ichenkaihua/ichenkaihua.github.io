@@ -3,6 +3,7 @@ layout: post
 title: "解决linux ubuntu14 使用teamviewer11 中文乱码问题"
 description: "Solve the problem of Linux ubuntu14.04 use teamviewer Chinese garbled"
 category: linux
+fullwidth: true
 tags: [ubuntu,linux,teamviewer,乱码]
 date: 2015-12-21 12:45:28
 ---
