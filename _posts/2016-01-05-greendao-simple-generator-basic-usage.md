@@ -14,7 +14,7 @@ date: 2016-01-05 01:49:09
 
 ```groovy
     dependencies {
-	    compile 'com.github.ichenkaihua:greendao-generate:0.0.3'
+	    compile 'com.github.ichenkaihua:greendao-generate:0.0.4'
 	}
     repositories {
 	     mavenCentral()
