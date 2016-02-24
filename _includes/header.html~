@@ -18,7 +18,8 @@
 		<li><a href="/archive.html">Archive</a></li>
 		<li><a href="/categories.html">Categories</a></li>
 		<li><a href="/tags.html">Tags</a></li>
-		
+		<li><a href="/resume.html">简历(Resume)</a></li>
+            <li><a href="/resume.pdf">简历下载(pdf)</a></li>
 	  </ul>
         <!-- site search -->
  <div class="dropdown navbar-form navbar-right ">

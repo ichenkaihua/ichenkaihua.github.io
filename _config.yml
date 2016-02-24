@@ -48,7 +48,9 @@ duoshuo:
 production_url : http://www.chenkaihua.com
 production_sitename : www.chenkaihua.com
 repository_url: https://github.com/ichenkaihua.github.io/blob/master/
+gems: [jekyll-paginate]
 
+jekyll-paginate: 5
 paginate: 5
 paginate_path: "page:num"
 
