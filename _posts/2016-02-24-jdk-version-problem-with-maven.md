@@ -15,7 +15,7 @@ maven配置的问题就不说了，好多教程。现在不用eclipse，只记�
 1. 首先找到maven的配置文件`settings.xml`，通常在`maven_home/conf`目录下
 2. 在` <profiles> </profiles>`节点中添加如下配置,把`1.7`改成安装的jdk版本,然后刷新项目。
 
-```
+```xml
 <profile>     
             <id>jdk-1.7</id>     
             <activation>     
