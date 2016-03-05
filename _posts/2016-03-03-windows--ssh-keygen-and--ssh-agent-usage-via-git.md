@@ -16,8 +16,8 @@ windows下使用git时（我使用的是git bash软件），如果使用`https`�
 
 配置git的email和name，不然不能push，把邮箱和用户名改成你自己的
 
-* 配置email:`git git config --global user.email 'xyz@xx.com' `
-* 配置用户名: `git git config --global user.name 'myname' `
+* 配置email:`git config --global user.email 'xyz@xx.com' `
+* 配置用户名: `git config --global user.name 'myname' `
 
 
 ## 生成ssh证书
