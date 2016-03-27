@@ -95,7 +95,8 @@ gradle greendaoGenerate
 ![gradle-greendao-result](http://7xivpo.com1.z0.glb.clouddn.com/gradle-greendao-resutl.png)
 
 完成之后刷新项目，是这个样子的
-![gradle-greendao-app-view](http://7xivpo.com1.z0.glb.clouddn.com/greendao-result_view.png)
+
+![gradle-greendao-app-view](http://7xivpo.com1.z0.glb.clouddn.com/greedao-result_view_2.png)
 
 ## Demo下载
 
