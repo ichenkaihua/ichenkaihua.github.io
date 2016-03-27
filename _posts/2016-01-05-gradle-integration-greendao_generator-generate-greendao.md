@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "gradle集成greendao-generator生成android端greendao"
+title: "gradle脚本集成greendao-generator生成android端greendao"
 description: "gradle integration greendao_generator generate greendao"
 category: android
 tags: [greendao,gradle]
@@ -9,46 +9,69 @@ date: 2016-01-05 16:30:40
 以前使用greendao时，需要一个辅助的java项目，用于生成android端greendao代码。现在开发android项目基本是用android studio，构建工具使用gradle。gradle非常灵活强大，理论上讲，java能做的，gradle都能做。因此把`greendao-generator`集成在gradle中也不算什么难事。这样做的好处是，少了一个`java module`，省事。<!-- more -->
 具体想法是在`build.gradle`中定义一个`gradle task`,在`task`里调用`greendao-generator`接口。
 
-## 定义`greendaoGenerate` Task
-
-在项目跟路径的`build.gradle`中:
+## 添加greendao依赖
+编辑打开`app/build.gradle`文件,添加android程序`greendao`依赖
 
 ```groovy
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+
+    //加入greendao的依赖
+    compile 'de.greenrobot:greendao:2.1.0'
+}
+```
+
+
+
+## 定义`greendaoGenerate` Task
+
+在项目根路径的`build.gradle`中:
+
+```groovy
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 import de.greenrobot.daogenerator.Entity
-import  de.greenrobot.daogenerator.Schema
+import de.greenrobot.daogenerator.Schema
 import de.greenrobot.daogenerator.DaoGenerator
 
 buildscript {
     repositories {
-        mavenCentral()
         jcenter()
     }
     dependencies {
-        // replace with the current version of the Android plugin
-        classpath 'com.android.tools.build:gradle:2.0.0-alpha3'
-        // replace with the current version of the android-apt plugin
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        //加入greendao-generator的依赖，gradle执行task的环境依赖在这里定义
 
-        classpath   'de.greenrobot:greendao-generator:2.1.0'
+        classpath 'com.android.tools.build:gradle:2.0.0-beta7'
+        classpath 'de.greenrobot:greendao-generator:2.1.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
 }
 
-repositories {
-    mavenCentral()
+allprojects {
+    repositories {
+        jcenter()
+    }
 }
 
-task greendaoGenerate <<{
-    def pack = 'com.dreamliner.secretchat'
-    Schema schema  = new Schema(1,"${pack}.entity");
-    schema.defaultJavaPackageDao="${pack}.dao"
-    schema.hasKeepSectionsByDefault=true
-    schema.useActiveEntitiesByDefault=true;
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+task greendaoGenerate << {
+    def pack = 'com.chenkaihua.gradlegreendaosimple'
+    Schema schema = new Schema(1, "${pack}.entity");
+    schema.defaultJavaPackageDao = "${pack}.dao"
+    schema.hasKeepSectionsByDefault = true
+    schema.useActiveEntitiesByDefault = true;
     Entity user = schema.addEntity("User");
     user.addIdProperty();
     user.addStringProperty("name");
     user.addStringProperty("password");
 
-    new DaoGenerator().generateAll(schema,"app/src/main/java",null,"app/src/test/java");
+    new DaoGenerator().generateAll(schema, "app/src/main/java", null, "app/src/test/java");
 
 }
 ```
@@ -65,8 +88,19 @@ task greendaoGenerate <<{
 gradle greendaoGenerate
 ```
 结果如下:
+第一次运行时，gradle会下载`greendao-generator`依赖，速度可能比较慢
+![gradle-greendao-download-jar](http://7xivpo.com1.z0.glb.clouddn.com/greendao-download_jar.png)
+
+之后可以从控制台看到generate信息
 ![gradle-greendao-result](http://7xivpo.com1.z0.glb.clouddn.com/gradle-greendao-resutl.png)
 
+完成之后刷新项目，是这个样子的
+![gradle-greendao-app-view](http://7xivpo.com1.z0.glb.clouddn.com/greendao-result_view.png)
+
+## Demo下载
+
+Demo我已经传到github了,有兴趣的同学可以瞄一瞄
+<https://github.com/ichenkaihua/GradleGreendaoSimple>
 
 
 
