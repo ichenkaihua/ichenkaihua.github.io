@@ -1,101 +1,38 @@
 ---
 layout: default
 ---
+{% assign author = site.data.authors[page.author] %}
+<div class="post">
+  <h1 class="post-title">{{ page.title }}</h1>
+    <span class="post-date author-name">{{ page.date | date: "%Y-%m-%d" }}</span>
+  {{ content }}
+</div>
 
-
-<div class="row">
-  <div class="col-md-{% if page.fullwidth == true %}12{% else %}9{% endif %}" role="main">
-
-    <!-- article header -->
-    <div class="page-header">
-        <h1 id="title">
-              {{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}
-        </h1>
-      <div class="meta">
-         
-         {{ page.date | date_to_long_string }}</b>
-        
-      </div>
-    </div>
-
-    <!-- article body -->
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="content bs-docs-container markdown-body">
-
-          {{ content }}
-          
-        </div>
-
-
-   
-
-
-
-  <hr />
-
-
-    {% unless page.categories == empty %}
-        <ul class="tag_box inline">
-          <li><i class="glyphicon glyphicon-open"></i></li>
-          {% assign categories_list = page.categories %}
-          {% include categories_list %}
-        </ul>
-      {% endunless %}
-
-      {% unless page.tags == empty %}
-        <ul class="tag_box inline">
-          <li><i class="glyphicon glyphicon-tags"></i></li>
-          {% assign tags_list = page.tags %}
-          {% include tags_list %}
-        </ul>
-      {% endunless %}
-
-      <hr />
-  <!-- 上下页 -->
-        <div>
-   
-          <nav>
-  <ul class="pager">
-  {% if page.previous %}
-    <li class="previous "><a href="{{ page.previous.url }}"><span aria-hidden="true">&larr;</span> {{ page.previous.title }}</a></li>
-    {% else %}
-    <li class="previous disabled "><a href="#"><span aria-hidden="true">&larr;</span> </a></li>
-  {% endif %}
-  {% if page.next %}
-    <li class="next "><a href="{{ page.next.url }}"><span aria-hidden="true">&rarr;</span> {{ page.next.title }}</a></li>
-    {% else %}
-    <li class="next disabled "><a href="#"><span aria-hidden="true">&rarr;</span> </a></li>
-  {% endif %}
+<div class="related">
+  <h2>相关文章</h2>
+  <ul class="related-posts">
+    {% for post in site.related_posts limit:3 %}
+      <li>
+        <h3>
+          <a href="{{ post.url }}">
+            {{ post.title }}
+            <small>{{ post.date | date: "%Y-%m-%d" }}</small>
+          </a>
+        </h3>
+      </li>
+    {% endfor %}
   </ul>
-</nav>
-        </div>
+</div>
 
-
-             <!-- 评论 -->
-        {% include comment.html %}
-
-     
-      </div>
-    </div>
-
-  </div> <!-- class="col-md-9" -->
-  <!-- directory side navigation -->
-  {% unless page.fullwidth == true %}
-  <div class="col-md-3" role="complementary">
-    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
-      <ul id="sideNav" class="nav bs-docs-sidenav">
-
-        <!-- code will be generated in application.js -->
-
-      </ul>
-      <a class="back-to-top" href="#top">
-        Back to top
-      </a>
-    </nav>
-  </div> <!-- col-md-3 -->
-  {% endunless %}
-</div> <!-- div class="row" -->
-
-
-
+<div class="ds-thread" data-thread-key="{% if page.old_id %}{{page.old_id}}{% else %}{{page.id}}{% endif %}" data-title="{{ page.title }}" data-url="{{site.production_url}}{{ page.url }}"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"{{ site.duoshuo.short_name }}"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>

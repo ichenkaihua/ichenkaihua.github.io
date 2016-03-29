@@ -5,19 +5,34 @@ header: Posts By Tag
 group: navigation
 ---
 
-<ul class="tag_box inline">
+<!-- <ul class="tag_box inline">
   {% assign tags_list = site.tags %}  
-  {% include tags_list %}
-</ul>
+    {% if tags_list.first[0] == null %}
+    {% for tag in tags_list %} 
+    	<a  href="/tags{{ tag }}-ref">{{ tag }} <span  >{{ site.tags[tag].size }}</span></a>
+    {% endfor %}
+  {% else %}
+    {% for tag in tags_list %} 
+    	<a  href="/tags#{{ tag[0] }}-ref">{{ tag[0] }} <span  >{{ tag[1].size }}</span></a>
+    {% endfor %}
+  {% endif %}
+</ul> -->
 
 
 {% for tag in site.tags %} 
   <h2 id="{{ tag[0] }}-ref">{{ tag[0] }}</h2>
-  <ul>
+  <ul style="in">
     {% assign pages_list = tag[1] %}  
-    {% include pages_list %}
+      {% for node in pages_list %}
+    {% if node.title != null %}
+      {% if group == null or group == node.group %}
+      	{% if page.url == node.url %}
+      	<span class="active"><a href="{{node.url}}" class="active">{{node.title}}</a></span>
+      	{% else %}
+      	<span><a href="{{node.url}}">{{node.title}}</a></span>
+      	{% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
   </ul>
 {% endfor %}
-
-
-

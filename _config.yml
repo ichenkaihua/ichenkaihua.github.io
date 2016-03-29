@@ -1,69 +1,32 @@
-# This is the default format. 
-# For more see: http://jekyllrb.com/docs/permalinks/
+# Dependencies
+highlighter:      pygments
 permalink: /:year/:month/:day/:title
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md",
           "jekyll_serve.sh", "CNAME"]
-#highlighter: pygments
-#highlighter: ""
 
-#future: true
-# for description
-excerpt_separator: "<!-- more -->"
-
-## safe is false by default in local, this is the flag for known from remote.
-#safe: true
-
-# conversion
 markdown:    kramdown
 kramdown:
   input: GFM
 timezone: GMT+8
-# Themes are encouraged to use these universal variables 
-# so be sure to set them if your theme uses them.
-#
-title : 陈开华博客
-tagline: Site Tagline
-author :
-  name : 陈开华
-  email : admin@chenkaihua.com
-  github : ichenkaihua
-comments: duoshuo
+
+# Permalinks
+
+relative_permalinks: true
+
+# Setup
+title:            陈开华博客
+tagline:          '陈开华的个人博客'
+description:      '一个懂点j2ee的android程序员'
+baseurl:          /
+github: ichenkaihua
+
+paginate:         5
+paginate_path: "page:num"
+
+excerpt_separator: <!-- more -->
+
 duoshuo:
    short_name: chenkaihua
 
-
-
-
-  #twitter : username
-  #feedburner : feedname
-
-# The production_url is only used when full-domain names are needed
-# such as sitemap.txt 
-# Most places will/should use BASE_PATH to make the urls
-#
-# If you have set a CNAME (pages.github.com) set your custom domain here.
-# Else if you are pushing to username.github.io, replace with your username.
-# Finally if you are pushing to a GitHub project page, include the project name at the end.
-#
-production_url : http://www.chenkaihua.com
-production_sitename : www.chenkaihua.com
-repository_url: https://github.com/ichenkaihua.github.io/blob/master/
-#gems: [jekyll-paginate]
-
-paginate: 5
-paginate_path: "page:num"
-
-#  specify configuration in the pages and posts for your site.
-defaults:
-  -
-    scope:
-      path: "_drafts"
-    values:
-      draft_flag: "[draft]"
-  -
-    scope:
-      path: "privates/_posts"
-    values:
-      draft_flag: "[Private]"
-
+production_url: www.chenkaihua.com

@@ -1,156 +1,45 @@
 ---
-title: 陈开华博客
-tagline: 首页
-layout: page
+layout: default
+title: 首页
 ---
 
-
-
-
-
-
-<div class="row">
-    <div class="col-md-9">
+<div class="posts">
     {% for post in paginator.posts %}
+  <div class="post">
+    <h1 class="post-title">
+      <a href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </h1>
 
-<div >
-  <h1 id="title" >{{ post.title }}</h1>
-  {{ post.excerpt }}
-  <div  class="row" >
-  <div class="col-xs-6 " ><small>{{ post.date | date: "%Y-%m-%d" }}</small></div>
-
-  <div class="col-xs-6 text-right"><a class="btn btn-primary  " href="{{ post.url }}" role="button">阅读全文</a></div>
+    <span class="post-date ">{{ post.date | date: "%Y-%m-%d" }}</span>
   
+
+ 
+    {% if post.content contains '<!--more-->' %}
+      {{ post.content | split:'<! --more-->' | first }}
+    {% else %}
+      {{ post.excerpt }}
+    {% endif %}
+    
   </div>
-  
+  {% endfor %}
 </div>
 
-<hr />
-
-{% endfor %}
-
-
-<nav  class="text-center" >
-<ul class="pagination">
+<div class="pagination">
   {% if paginator.previous_page %}
-    <li >
-      {% if paginator.previous_page == 1 %}
-           <a href="/" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-      {% else %}
-           <a href="{{ paginator.previous_page_path }}" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-      {% endif %}
-    </li>
+    {% if paginator.page == 2 %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}">上一页</a>
+    {% else %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">上一页</a>
+    {% endif %}
   {% else %}
-    <li class="disabled">
-    <a  aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-
-    </li>
+    <span class="pagination-item newer">上一页</span>
   {% endif %}
-
-  
-    
-      {% if paginator.page == 1 %}
-      <li class="active"><span>1</span></li>
-        
-      {% else %}
-      <li>
-        <a href="/">1</a>
-        </li>
-      {% endif %}
-    
-
-    {% for count in (2..paginator.total_pages) %}
-      
-        {% if count == paginator.page %}
-          <li class="active"><span class="current-page">{{ count }}</span></li>
-        {% else %}
-          <li><a href="/page{{ count }}">{{ count }}</a></li>
-        {% endif %}
-      
-    {% endfor %}
-  
 
   {% if paginator.next_page %}
-    <li >
-      
-      <a href="{{ paginator.next_page_path }}" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
+    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">下一页</a>
   {% else %}
-    <li class="disabled">
-     <a   aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-      
-    </li>
+    <span class="pagination-item older">下一页</span>
   {% endif %}
-</ul>
-</nav>
-
-    </div>
-<div class="col-md-3 hidden-xs">
-
-
-
-<div class="list-group">
-  <div  class="list-group-item ">分类文章</div>
-{% for category in site.categories %} 
-  
-<a href="{{ BASE_PATH }}/categories.html#{{ category[0] }}-ref" class="list-group-item"> {{ category[0] }} <span class="badge">{{ category[1].size }}</span></a>  
-{% endfor %}  
 </div>
-
-
-
-{% if site.data.github-projects.show  %}
-
-
-<div class="list-group">
-  <div  class="list-group-item ">{{ site.data.github-projects.title %}}</div>
-
-  {% for project in site.data.github-projects.links %}
-      <a href="{{ project.url }}" title="{{ project.title }}" target="_blank" class="list-group-item">{{ project.name }}</a>
-
-  {% endfor %}
-
-<!--   <a href="https://github.com/ichenkaihua/GreenDAO-Simple-Generate" title="用少量注解简化greendao的生成" target="_blank" class="list-group-item">GreenDAO-Simple-Generate</a>
-  <a href="https://github.com/ichenkaihua/ssm-easy-template"   title="spring+springmvc+mybatis+shiro简单集成框架"  target="_blank"  class="list-group-item">ssm-easy-template</a>
-  <a href="https://github.com/ichenkaihua/spring-ebean"  title="spring4+springMVC4+EbeanORM6+flyway+Gradle" target="_blank" class="list-group-item">spring-ebean</a> -->
-  
-</div>
-
-{% endif %}
-
-
-{% if site.data.links.show %}
-
-
-<div class="list-group">
-  <div  class="list-group-item ">{{ site.data.links.title }}</div>
-  {% for link in site.data.links.links %}
-  <a href="{{ link.url }}"  target="_blank" class="list-group-item">{{ link.name }} </a> 
-  {% endfor %}
-</div>
-
-{% endif %}
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-

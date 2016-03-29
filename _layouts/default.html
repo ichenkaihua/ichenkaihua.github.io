@@ -1,33 +1,48 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
- {% include head.html %}
+  {% include head.html %}
 
-  <body>
-  <!-- Skip to main content -->
-    <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
+  <body class="theme-base-0f">
 
-   <div id="wrap">
-   {% include header.html %}
+    {% include sidebar.html %}
 
-    <!-- doc-container -->
-    <div class="container">
+    <div class="content container">
+      {{ content }}
+    </div>
+  <script src="/public/js/jquery-1.11.2.min.js"></script>
+    
+    
+    <script src="/public/google-code-prettify/prettify.js"></script>
+    
+    
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+        /*google-code-prettify*/
+        $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+        prettyPrint();
 
-        {{ content }}
-
-    </div> <!-- doc-container -->
-
-    </div><!-- div id="wrap" -->
+        /* Tips */
+        $('pre .language-tips').parent().addClass('tom-callout-tips');
 
 
-   {% include footer.html %}
+      });
 
 
-   {% include analytics %}
+      /*jekyll 搜索*/
+    /*    SimpleJekyllSearch({
+        searchInput: document.getElementById('dLabel'),
+        resultsContainer: document.getElementById('c'),
+        json: '/search.json',
+        searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+        noResultsText: '没有搜索到文章',
+        limit: 20,
+        fuzzy: false
+      })*/
 
-{% include foot.html %}   
-   
 
+    </script>
     
   </body>
 </html>

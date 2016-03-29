@@ -1,0 +1,90 @@
+<!--   <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Saúl Molinero
+        </a>
+      </h1>
+      <p class="lead">I usually talk about android development</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="sidebar-nav-item"></span>
+    </nav>
+
+    <a href="https://plus.google.com/+SaulMolineroMalvido/posts">Plus</a> -
+    <a href="https://twitter.com/_saulmm">Twitter</a> -
+    <a href="https://github.com/saulmm">Github</a>
+  </div>
+</div> -->
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="{{ site.baseurl }}">
+          <img class="sidebar-logo" src="{{ site.baseurl }}public/logo_white_100w.png" />
+          {{ site.title }}
+        </a>
+      </h1>
+     <!--  <p class="lead">{{ site.description }}</p> -->
+    </div>
+
+    <nav class="sidebar-nav">
+
+
+      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+
+      {% comment %}
+        The code below dynamically generates a sidebar nav of pages with
+        `layout: page` in the front-matter. See readme for usage.
+      {% endcomment %}
+
+      {% assign pages_list = site.pages %}
+      {% for node in pages_list %}
+        {% if node.title != null %}
+          {% if node.layout == "page" %}
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+    </nav>
+
+    <a href="https://weibo.com/chenkaihua_it">Weibo</a> -
+    <a href="https://github.com/{{site.github }}">Github</a>
+
+
+
+
+
+  <!--   <nav class="sidebar-social">
+      <ul class="navigation">
+
+        <li class="social-item twitter">
+          <a href="http://twitter.com/@androcode" title="@androcode on Twitter" target="_blank">
+            <i class="icon fa fa-twitter"></i>
+            <span class="label">Twitter</span>
+          </a>
+        </li>
+
+        <li class="social-item gplus">
+          <a href="https://plus.google.com/+AndrocodeEs/posts" title="+AndrocodeEs" target="_blank">
+            <i class="icon fa fa-google-plus-square"></i>
+            <span class="label">Google+</span>
+          </a>
+        </li>
+
+        <li class="social-item github">
+          <a href="http://github.com/androcode-es" title="@androcode-es on GitHub" target="_blank">
+            <i class="icon fa fa-github"></i>
+            <span class="label">GitHub</span>
+          </a>
+        </li>
+      </ul>
+    </nav> -->
+  </div>
+</div> 
+
+
