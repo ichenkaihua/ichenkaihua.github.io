@@ -34,7 +34,9 @@
     <nav class="sidebar-nav">
 
 
-      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+<!-- <span>{{page.url}}</span><span>{{ site.baseurl }}</span> -->
+
+      <a class="sidebar-nav-item{% if page.url == "/index.html" %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
 
       {% comment %}
         The code below dynamically generates a sidebar nav of pages with
@@ -52,7 +54,7 @@
 
     </nav>
 
-    <a href="https://weibo.com/chenkaihua_it">Weibo</a> -
+    <a href="https://weibo.com/{{ site.weibo }}">Weibo</a> -
     <a href="https://github.com/{{site.github }}">Github</a>
 
 

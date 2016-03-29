@@ -2,6 +2,8 @@
 highlighter:      pygments
 permalink: /:year/:month/:day/:title
 
+
+
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md",
           "jekyll_serve.sh", "CNAME"]
 
@@ -12,7 +14,7 @@ timezone: GMT+8
 
 # Permalinks
 
-relative_permalinks: true
+
 
 # Setup
 title:            陈开华博客
@@ -20,6 +22,7 @@ tagline:          '陈开华的个人博客'
 description:      '一个懂点j2ee的android程序员'
 baseurl:          /
 github: ichenkaihua
+weibo: chenkaihuait
 
 paginate:         5
 paginate_path: "page:num"
