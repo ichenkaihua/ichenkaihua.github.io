@@ -33,3 +33,5 @@ duoshuo:
    short_name: chenkaihua
 
 production_url: www.chenkaihua.com
+
+gems: [jekyll-paginate]
