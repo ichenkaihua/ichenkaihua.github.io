@@ -1,6 +1,8 @@
 # Dependencies
 highlighter:     rouge 
-permalink: /:year/:month/:day/:title
+#permalink: /:year/:month/:day/:title
+permalink: /:year/:month/:day/:title/
+future: true
 
 
 
