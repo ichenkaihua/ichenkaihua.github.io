@@ -4,6 +4,7 @@ title: "jekyll search via Simple-Jekyll-Search"
 description: "jekyll search via Simple-Jekyll-Search | 使用Simple-Jekyll-Search解决jekyll站内搜索问题"
 category: web
 tags: [jekyll,Simple-Jekyll-Search]
+permalink: /:year/:month/:day/:title/
 ---
 
 

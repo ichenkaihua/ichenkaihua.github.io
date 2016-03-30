@@ -5,6 +5,7 @@ description: "gradle执行sql初始化数据库-陈开华博客"
 category: java
 tags: [gradle,sql]
 date: 2015-11-05 20:07:51
+permalink: /:year/:month/:day/:title/
 ---
 
 

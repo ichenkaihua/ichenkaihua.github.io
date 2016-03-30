@@ -6,6 +6,7 @@ category: [build tools]
 fullwidth: true
 tags: [maven,jdk]
 date: 2016-02-24 23:00:40
+permalink: /:year/:month/:day/:title/
 ---
 想起了以前在eclipse里使用maven构建j2ee项目时，困扰我一天的问题。即默认新建完的maven项目jdk版本为1.5(不支持一些注解)，因此我右键修改为安装版本,这时没有问题，但是使用了`maven update`或者刷新项目后，jdk版本又变为1.5版本，如此反复。开始以为是项目问题，网上找资料才发现是maven配置的问题,解决这个问题需要修改maven的配置文件。<!-- more -->
 

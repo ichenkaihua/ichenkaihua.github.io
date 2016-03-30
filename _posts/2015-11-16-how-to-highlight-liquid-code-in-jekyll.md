@@ -4,6 +4,7 @@ title: "jekyll中高亮Liquid代码"
 description: "How to highlight Liquid code in jekyll"
 category: web
 tags: [jekyll,liquid]
+permalink: /:year/:month/:day/:title/
 ---
 
 

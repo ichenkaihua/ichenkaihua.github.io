@@ -5,6 +5,7 @@ description: "windows --ssh-key-and--ssh-agent-usage-via-git"
 category: [build tools]
 tags: [git,ssh]
 date: 2016-03-03 00:07:48
+permalink: /:year/:month/:day/:title/
 ---
 
 windows下使用git时（我使用的是git bash软件），如果使用`https`协议,则每次远程操作都要输入用户名和密码(github/oschina)，既繁琐又费时。如果使用`git ssh`	协议，虽然不用输入帐号密码，每次提交依然需要输入ssh的密钥密码，也是繁琐。`ssh-keygen`用于生成ssh证书，`ssh-agent`用于保存ssh密码。配置好这两个工具后，多次远程操作只需要一次认证。<!-- more -->

@@ -5,6 +5,7 @@ description: "gradle integration greendao_generator generate greendao"
 category: android
 tags: [greendao,gradle]
 date: 2016-01-05 16:30:40
+permalink: /:year/:month/:day/:title/
 ---
 以前使用greendao时，需要一个辅助的java项目，用于生成android端greendao代码。现在开发android项目基本是用android studio，构建工具使用gradle。gradle非常灵活强大，理论上讲，java能做的，gradle都能做。因此把`greendao-generator`集成在gradle中也不算什么难事。这样做的好处是，少了一个`java module`，省事。<!-- more -->
 具体想法是在`build.gradle`中定义一个`gradle task`,在`task`里调用`greendao-generator`接口。

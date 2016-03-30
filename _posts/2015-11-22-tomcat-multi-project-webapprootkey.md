@@ -6,6 +6,7 @@ category: j2ee
 fullwidth: true
 tags: [tomcat]
 date: 2015-11-22 14:38:19
+permalink: /:year/:month/:day/:title/
 ---
 
 错误:

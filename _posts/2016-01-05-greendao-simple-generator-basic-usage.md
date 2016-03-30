@@ -5,6 +5,7 @@ description: "Greendao Simple Generator basic usage"
 category: android
 tags: [Greendao Simple Generator,android orm]
 date: 2016-01-05 01:49:09
+permalink: /:year/:month/:day/:title/
 ---
 
 [GreeDAO-Simple-Generate](https://github.com/ichenkaihua/GreenDAO-Simple-Generate),基于`de.greenrobot:greendao-generator`项目，运用少量java注解简化Greendao的生成难度。

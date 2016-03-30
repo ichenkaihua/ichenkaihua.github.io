@@ -6,6 +6,7 @@ category: linux
 fullwidth: true
 tags: [ubuntu,linux,teamviewer,乱码]
 date: 2015-12-21 12:45:28
+permalink: /:year/:month/:day/:title/
 ---
 Teamviewer是优秀的远程控制软件，支持文件传输，视频录制，聊天通讯等功能。最重要的是支持主流操作系统，甚至android app也可以使用。但是在linux系统使用时，却经常出现中文乱码。linux版的teamview是由windows版wine出来的，但是没有完善字体(可能版权原因)。导致找不到字体，所以乱码了<!-- more -->
 

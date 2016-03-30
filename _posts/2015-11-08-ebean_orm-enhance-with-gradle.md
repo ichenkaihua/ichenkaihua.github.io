@@ -5,6 +5,7 @@ description: "Ebean-ORM enhance with gradle"
 category: j2ee
 tags: [gradle,ebean-orm]
 date: 2015-11-08 22:12:43
+permalink: /:year/:month/:day/:title/
 ---
 
 

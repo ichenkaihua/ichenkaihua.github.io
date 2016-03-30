@@ -5,6 +5,7 @@ description: "running mybatis generator with gradle"
 category: j2ee
 tags: [mybatis,mybatis-generator,gradle]
 date: 2015-12-19 17:13:12
+permalink: /:year/:month/:day/:title/
 ---
 **[Mybatis Generator][1]**是一个mybatis工具项目，用于生成mybatis的`model`,`mapper`,`dao`持久层代码。**Mybatis Generator**提供了`maven plugin`,`ant target`，`java`三种方式启动。现在主流的构建工具是**gradle**,虽然mybatis generator没有提供gradle的插件，但gradle可以调用ant任务，因此，gradle也能启动Mybatis Generator。<!-- more -->
 
