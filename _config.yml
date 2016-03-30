@@ -12,6 +12,7 @@ exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md",
 markdown:    kramdown
 kramdown:
   input: GFM
+  syntax_highlighter: rouge
 timezone: GMT+8
 
 # Permalinks
@@ -21,7 +22,7 @@ timezone: GMT+8
 # Setup
 title:            陈开华博客
 tagline:          '陈开华的个人博客'
-description:      '一个懂点j2ee的android程序员'
+description:      '懂点android,j2ee'
 baseurl:          /
 github: ichenkaihua
 weibo: chenkaihuait
