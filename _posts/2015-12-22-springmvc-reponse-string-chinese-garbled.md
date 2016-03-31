@@ -6,6 +6,7 @@ category: [j2ee,spring]
 fullwidth: true
 tags: [spring,springmvc,乱码]
 date: 2015-12-22 18:45:27
+permalink: /:year/:month/:day/:title/
 ---
 网上有多种解决办法，发现这种方式最简便：
 在springMVC的配置文件中(`springMVC-xx.xml`)，修改`<mvc:annotation-driven />`为：

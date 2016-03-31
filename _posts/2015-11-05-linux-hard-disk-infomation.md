@@ -5,6 +5,7 @@ description: "linux下获取硬盘容量使用情况，开机挂载分区-陈开
 category: linux
 tags: [linux命令]
 date: 2015-11-05 13:57:52
+permalink: /:year/:month/:day/:title/
 ---
 
 

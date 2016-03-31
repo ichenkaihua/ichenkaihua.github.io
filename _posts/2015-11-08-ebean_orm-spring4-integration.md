@@ -5,6 +5,7 @@ description: "ebean-orm spring4 integration"
 category: [j2ee,Spring]
 tags: [Ebean-ORM,Spring]
 date: 2015-11-08 19:53:03
+permalink: /:year/:month/:day/:title/
 ---
 
 

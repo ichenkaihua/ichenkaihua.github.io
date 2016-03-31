@@ -5,6 +5,7 @@ description: "idea webapp remote  debug via gretty"
 category: j2ee
 tags: [debug,gretty]
 date: 2016-02-20 12:47:44
+permalink: /:year/:month/:day/:title/
 ---
 前段时间被问到 如何在idea社区免费版IDE中debug  j2ee webapp项目。在IDEA付费版中，IDEA直接提供了tomcat jetty等插件，可以很方便的debug，然而在社区版并没有这些插件。但是我们可以通过结合`gretty`等`gradle`的webapp插件和IDEA的`Run/Debug Configurations`来实现`Remote Debug`。<!-- more -->
 

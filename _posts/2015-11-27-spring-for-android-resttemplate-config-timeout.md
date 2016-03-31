@@ -5,6 +5,7 @@ description: "spring for android resttemplate config timeout"
 category: android
 tags: [Spring,android annotations]
 date: 2015-11-27 00:09:40
+permalink: /:year/:month/:day/:title/
 ---
 
 **spring for android**是一个android平台下的网络框架，由大名鼎鼎的spring项目组开发。**spring for android**对于处理rest网络请求特别方便，这是我使用**spring for android**的主要原因。使用过程中，可能发现spring for android这套框架不好设置超时，有时甚至设置了也无效。如果使用了aa注解框架，设置超时更麻烦点。下面从源码角度解读这些问题。<!-- more -->

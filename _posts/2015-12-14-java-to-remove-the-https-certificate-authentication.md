@@ -6,6 +6,7 @@ category: java
 fullwidth: true
 tags: [https证书,java]
 date: 2015-12-14 17:53:53
+permalink: /:year/:month/:day/:title/
 ---
 
 java进行https协议网络请求时，会要求证书验证。如果证书不合格，则会包错。之前项目中使用过第三方服务，提供的https协议的接口，即通过java访问https网络。为了正常使用服务，有必要去除java对https协议证书验证。<!-- more -->

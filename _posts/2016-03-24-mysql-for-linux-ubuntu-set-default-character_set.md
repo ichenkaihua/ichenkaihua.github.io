@@ -4,7 +4,7 @@ title: "linux ubuntu下MySQL配置，解决mysql乱码，不能远程连接问�
 description: "mysql for linux ubuntu set default character_set remote connect "
 category: linux
 tags: [mysql,linux]
-
+permalink: /:year/:month/:day/:title/
 ---
 
 linux下安装mysql-server后，mysql-server默认编码为`latium`，这样就导致mysql存储中文乱码。mysql为安全起见，设置`root`账户只能`localhost`登陆，导致其他主机不能访问mysql，今天配置云主机的mysql时，碰到了些问题，记录下来，避免再犯。我的系统是`ubuntu 14.04 LTS`，mysql版本为`5.5`，对其他linux系统来说，解决方法也是一样。<!-- more -->

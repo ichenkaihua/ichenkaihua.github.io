@@ -5,6 +5,7 @@ description: "spring test framework basic usage"
 category: spring
 tags: [spring test,junit,springMVC Test]
 date: 2016-01-02 00:51:01
+permalink: /:year/:month/:day/:title/
 ---
 spring作为最负盛名的java框架，自然有配套的测试框架，这就是`Spring Test`框架。spring测试框架整合`junit`,`jmock`等单元测试框架,为开发人员节省了大量时间。Spring测试框架还包括springMVC的 web测试，引入springMVC测试框架后，应用无需在j2ee容器中启动即可断言调试，并且支持事物回滚。<!-- more -->
 

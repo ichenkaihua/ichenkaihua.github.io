@@ -5,6 +5,7 @@ description: "如何使用greendao| 陈开华博客"
 category: android
 tags: [greendao,android-orm]
 date: 2015-11-19 23:13:44
+permalink: /:year/:month/:day/:title/
 ---
 开发**android**应用时，免不了和**sqlite**数据库打交道。如果通过android源生api操作数据库，不但费时费力，使得后期维护变得困难，而且不能保证有良好的性能表现。许多热心的开源组织或个人，致力于解决这个难题，帮助开发者用最少的时间开发出高性能的sqlite应用。**greendao**就是这样的开源项目,在**android-orm**类项目中，使用人数最多。<!-- more -->
 
