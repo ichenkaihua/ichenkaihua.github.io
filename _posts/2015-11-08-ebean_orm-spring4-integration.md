@@ -20,7 +20,7 @@ date: 2015-11-08 19:53:03
 本例中使用`ebean-orm:6.10.3`和`spring:4.1.7.RELEASE`版本
 **build.gradle**文件中配置依赖
 
-```java
+```groovy
 apply plugin: 'war'
 
 repositories {

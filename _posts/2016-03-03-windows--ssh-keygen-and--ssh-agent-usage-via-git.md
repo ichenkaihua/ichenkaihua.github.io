@@ -40,7 +40,7 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 **1** 在home目录下新建`.bashrc`文件:打开`gi bash`,输入`touch ~/.bashrc`
 **2** 用记事本打开`~/.bashrc`,把以下代码复制到文件中，并保存。
 
-```
+``` bat
 # Note: ~/.ssh/environment should not be used, as it
 #       already has a different purpose in SSH.
 
