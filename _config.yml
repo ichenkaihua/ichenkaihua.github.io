@@ -39,3 +39,8 @@ duoshuo:
 production_url: www.chenkaihua.com
 
 gems: [jekyll-paginate]
+
+author :
+  name : 陈开华
+  email : admin@chenkaihua.com
+  github : ichenkaihua

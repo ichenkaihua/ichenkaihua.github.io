@@ -26,20 +26,22 @@ title: 首页
   {% endfor %}
 </div>
 
+<nav>
 <div class="pagination">
   {% if paginator.previous_page %}
     {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}">上一页</a>
+      <a class="pagination-item newer" href="{{ site.baseurl }}">&lt;上一页</a>
     {% else %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">上一页</a>
+      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">&lt;上一页</a>
     {% endif %}
   {% else %}
-    <span class="pagination-item newer">上一页</span>
+    <span class="pagination-item newer">&lt;上一页</span>
   {% endif %}
 
   {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">下一页</a>
+    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">下一页&gt;</a>
   {% else %}
-    <span class="pagination-item older">下一页</span>
+    <span class="pagination-item older">下一页&gt;</span>
   {% endif %}
 </div>
+</nav>
