@@ -27,7 +27,10 @@
           <img class="sidebar-logo" src="{{ site.baseurl }}public/logo_white_100w.png" />
           {{ site.title }}
         </a> -->
-        {{ site.title }}
+        <a href="{{ site.baseurl }}">
+          <img class="sidebar-logo" src="{{ site.baseurl }}public/logo_white_100w.png" />
+          {{ site.title }}
+        </a>
       </h1>
        <p class="lead">{{ site.description }}</p> 
     </div>
@@ -57,12 +60,8 @@
 
 
    <nav>
-   <ul style="list-style: none;text-align: left;width: 100%">
-    <li style="display: inline;float: left;"><a href="https://weibo.com/{{ site.weibo }}">Weibo </a> </li>
-    <li style="display: inline;float: left;;margin-left: 1rem"><a href="https://github.com/{{site.github }}">Github</a> </li>
-   </ul>
-
-     
+   <a href="https://weibo.com/{{ site.weibo }}">Weibo-</a>
+   <a href="https://github.com/{{site.github }}">-Github</a>    
     </nav> 
   </div>
 </div> 

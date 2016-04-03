@@ -22,8 +22,8 @@ timezone: GMT+8
 
 # Setup
 title:            陈开华博客
-tagline:          '陈开华的个人博客'
-description:      '懂点android,j2ee'
+tagline:          "Chenkaihua's Personal Website"
+description:      '有空谈谈android'
 baseurl:          /
 github: ichenkaihua
 weibo: chenkaihuait
