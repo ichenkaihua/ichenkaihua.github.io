@@ -3,7 +3,7 @@ layout: post
 title: "Ebean-ORM Spring4 integration"
 description: "ebean-orm spring4 integration"
 category: [j2ee,Spring]
-tags: [Ebean-ORM,Spring]
+tags: [Ebean-ORM,Spring,ebean]
 date: 2015-11-08 19:53:03
 permalink: /:year/:month/:day/:title/
 ---
@@ -11,13 +11,17 @@ permalink: /:year/:month/:day/:title/
 
 `Ebean ORM`是一个使用纯Java实现的开源ORM框架。 Bean使用JPA注释对实体进行映射。Ebean力求让使用最简单的API帮助开发者从数据库获取有用的数据信息。`Ebean ORM`是轻量级框架，他支持源生sql、分页、大数据查询、批量插入、数据加密、json实用功能。`Ebean ORM`还支持与spring等框架集成，`Ebean orm`与spring集成后，ebean事物交给spring全局管理，省去了不少麻烦。但是官方文档对这部分一笔带过，我初次看文档时一头雾水，就是官方demo也过时有点错误，因此我选择了目前比较新版的`Ebean ORM`与`spring`集成。<!-- more -->
 
-### 开发环境
+## 示例源码下载
+示例项目我已经放到github了，看源码更直观:
+ <https://github.com/ichenkaihua/spring-ebean>
+
+## 开发环境
 * JDK版本:Oracle JDK8
 * IDE: IDEA
 * 构建工具：gradle
 
 
-### 添加依赖
+## 添加依赖
 本例中使用`ebean-orm:6.10.3`和`spring:4.1.7.RELEASE`版本
 **build.gradle**文件中配置依赖
 
@@ -42,7 +46,7 @@ dependencies {
 ```
 >**注意**:`org.avaje.ebeanorm:avaje-ebeanorm-spring:4.5.3`依赖`ebean ORM`，`ebeanorm-spring`是ebean提供的spring集成工具。
 
-### Spring集成Ebean ORM
+## Spring集成Ebean ORM
 **spring**集成**ebean orm**,其实就是把`ebeaon orm`的事物交由spring管理。这里使用xml配置的方式配置spring，`spring-config.xml`为spring配置文件。
 在**spring-config.xml** 文件中，内容如下
 
@@ -174,7 +178,7 @@ dependencies {
 
 这样配置之后，就可以在service里注入`EbeanServer`进行数据库操作了。
 
-### 怎样使用
+## 怎样使用
 
 ebean项目部署前，必须要`enhance`，具体操作请参考我的教程：[ebean-orm enhance with gradle]({% post_url 2015-11-08-ebean_orm-enhance-with-gradle %})
 
@@ -205,7 +209,7 @@ public class UserService {
 ```
 如果调用`saveOnThrowException()`方法，抛出异常，事物回滚，说明spring事物起作用了。
 
-### 参考资料
+## 参考资料
 > * ebean官网文档: [http://ebean-orm.github.io][ebean-doc]
 * ebean-github: [ https://github.com/ebean-orm/avaje-ebeanorm][ebean-github]
 

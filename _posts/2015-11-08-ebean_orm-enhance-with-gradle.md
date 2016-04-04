@@ -11,9 +11,11 @@ permalink: /:year/:month/:day/:title/
 
 使用`Ebean ORM`有个麻烦的地方，就是每次部署app前，需要`enhance`下`entity`类的class文件，所谓`enhance`，就是加强操作，用于修改实体bean，包括"编织“，”转换“，”字节码操作“等过程。如果没有`enhance`就使用ebean orm，则ebean会抛出异常。`Ebean ORM`提供了eclipse插件、idea插件、maven插件、ant等解决方案，虽然没有gradle插件支持，不过好在gradle支持ant任务，通过gradle调用ebean提供的ant target，完成编译后自动`enhance`操作。<!-- more -->
 
+## 示例源码下载
+示例项目我已经放到github了，看源码更直观: 
+<https://github.com/ichenkaihua/spring-ebean>
 
-
-### gradle调用ant
+## gradle调用ant
 
 gradle调用ant的一般步骤是
 
@@ -65,7 +67,7 @@ compileJava.doLast {
 ```
  这里没有定义task调用ant，而是让`compileJava`之后`enhance`，这样就保证了自动`enhance`，相比idea插件等手动`enhance`方式，省事多了。
 
-### 小技巧
+## 小技巧
 使用**IDEA付费版**时，跑server用idea集成工具，比如tomcat，jetty等，此时按照上述解决办法`enhance`后还是不能跑，报错为**com.xxx.entity.User not enhance?**,说明entity没有`enhance`，解决方法如下：
 
 1.**打开run configurations**:
