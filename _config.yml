@@ -16,6 +16,7 @@ kramdown:
   syntax_highlighter: rouge
   hard_wrap: false
 timezone: GMT+8
+keywords: [陈开华,chenkaihua,java,android,j2ee,ichenkaihua.github.com]
 
 # Permalinks
 

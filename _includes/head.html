@@ -12,6 +12,9 @@
 
     {% if page.tags %}
       <meta name="keywords" content="{{ page.tags | join: ', ' }}">
+      {% elsif site.keywords %}
+<meta name="keywords" content="{{ site.keywords | join: ', ' }}">
+
     {% endif %}
   {% if page.url == site.baseurl %}
     <meta name="description" content="{{ site.description }}">  
