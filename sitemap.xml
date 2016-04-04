@@ -9,8 +9,54 @@ title : Sitemap
 	<loc> {{ site.production_url }}/</loc>
 	<lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
 	<changefreq>daily</changefreq>
-	<priority>1.0</priority >
 </url>
+
+      {% assign pages_list = site.pages %}
+      {% for node in pages_list %}
+        {% if node.title != null %}
+          {% if node.layout == "page" %}
+         	 <url>
+			<loc>{{site.production_url}}{{ node.url }}</loc>
+				{% if node.last_updated %}
+				<lastmod>{{ node.last_updated | date: "%Y-%m-%d" }}</lastmod>
+				{% elsif node.date %}
+				<lastmod>{{ node.date | date: "%Y-%m-%d" }}</lastmod>
+				{% else %}
+				<lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
+				{% endif %}
+			<changefreq>monthly</changefreq>
+			</url>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+
+<url>
+	<loc>{{site.production_url}}/page2</loc>
+	<lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+
+<url>
+	<loc>{{site.production_url}}/page3</loc>
+	<lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+
+
+<url>
+	<loc>{{site.production_url}}/page4</loc>
+	<lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+
+<url>
+	<loc>{{site.production_url}}/page5</loc>
+	<lastmod>{{ site.time | date: "%Y-%m-%d" }}</lastmod>
+	<changefreq>monthly</changefreq>
+</url>
+
+
 
 {% for page in site.posts %}
 <url>
