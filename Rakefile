@@ -48,12 +48,12 @@ task :post do
   abort("rake aborted: '#{CONFIG['posts']}' directory not found.") unless FileTest.directory?(CONFIG['posts'])
   title = ENV["title"] || "new-post"
   tags = ENV["tags"] || "[]"
-  category = ENV["category"] || "[]"
+  category = ENV["category"] || ""
   category = "\"#{category.gsub(/-/,' ')}\"" if !category.empty?
   slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
   begin
     date = (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d')
-    date2=(ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime("\"%Y-%m-%d %H:%M:%S %z\"")
+    date2=(ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime('%Y-%m-%d %H:%M:%S')
   rescue => e
     puts "Error - date format must be YYYY-MM-DD, please check you typed it correctly!"
     exit -1
@@ -68,7 +68,7 @@ task :post do
     post.puts "---"
     post.puts "layout: post"
     post.puts "title: \"#{title.gsub(/-/,' ')}\""
-    post.puts "description:  \"#{title.gsub(/-/,' ')}\""
+    post.puts 'description: ""'
     post.puts "category: #{category}"
     post.puts "tags: #{tags}"
     post.puts "date: #{date2}"

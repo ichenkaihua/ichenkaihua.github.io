@@ -1,75 +1,80 @@
-<head>
-
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta charset="utf-8">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <meta name="theme-color" content="#558B2F">
-
-    {% if page.tags %}
-      <meta name="keywords" content="{{ page.tags | join: ', ' }}">
-      {% elsif site.keywords %}
-<meta name="keywords" content="{{ site.keywords | join: ', ' }}">
-
-    {% endif %}
-  {% if page.url == site.baseurl %}
-    <meta name="description" content="{{ site.description }}">  
-    
-    {% elsif page.excerpt %}
-    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 190 }} - {{  site.author.name }}">
-    {% endif %}
-<meta name="author" content="{{ site.author.name }}">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="icon" sizes="100x100" href="{{ site.baseurl }}public/logo_white_100w.png">
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-  <title>
-    {% if page.url == site.baseurl %}
+<!-- {{ page.url }} -->
+<!-- / -->
+     <title>
+    {% if page.home %}
       {{ site.title }} &middot; {{ site.tagline }}
     {% else %}
       {{ page.title }} &middot; {{ site.title }}
     {% endif %}
   </title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="{{ site.baseurl }}public/css/poole.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}public/css/syntax.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}public/css/hyde.css">
+
+        {% if page.tags %}
+      <meta name="keywords" content="{{ page.tags | join: ', ' }}">
+      {% elsif site.keywords %}
+<meta name="keywords" content="{{ site.keywords | join: ', ' }}">
+{%  endif %}
+    {% if page.excerpt %}
+    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 190 }} - {{  site.author.name }}">
+    {% endif %}
+    <meta name="author" content="{{ site.author.name }}">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
+<!--      <link rel="stylesheet" type="text/css" href="///fonts.useso.com/css?family=Roboto:300,400,500,700">
+  <link rel="stylesheet" type="text/css" href="///fonts.useso.com/icon?family=Material+Icons"> -->
+
+    <!-- Bootstrap styles -->
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+   <!--  <link href="/assets/bootstrap-3.3.1/css/bootstrap-theme.min.css" rel="stylesheet"> -->
+
+    <link href="http://cdn.bootcss.com/bootstrap-material-design/0.5.9/css/bootstrap-material-design.min.css" rel="stylesheet">
 
 
-    <!-- Icons -->
-                                 <link rel="shortcut icon" href="{{site.baseurl}}public/favicon.png">
-  <!-- RSS -->
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+    <!-- <link href="http://cdn.bootcss.com/bootstrap-material-design/0.5.9/css/ripples.min.css" rel="stylesheet"> -->
 
-  <!-- <link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet" media="all" > -->
+    
+    <!-- Custom styles -->
+    <link href="/assets/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <!-- google code prettify -->
+    <link href="/assets/google-code-prettify/prettify.css" rel="stylesheet" type="text/css" media="all">
 
-<!-- 使用自定义prettify的css，代码风格和github一样 -->
-<!--   <link rel="stylesheet" type="text/css" href="/public/google-code-prettify/prettify.css"> -->
-<style type="text/css">
-  
-  code {
-    word-break: break-all;
-  }
-
-pre.highlight {
-    display: block;
-    overflow: auto;
-    width: auto;
-    white-space: pre;
-    word-wrap: normal;
-    padding: 10px;   
+    <style type="text/css">
+    html {
+     font-family: "Lucida Grande", Helvetica, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", sans-serif;
+    font-weight: 500;
 }
 
-</style>
+
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <!-- atom & rss feed 
+    <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+-->
 
 
-</head>
+  </head>

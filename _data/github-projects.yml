@@ -1,0 +1,12 @@
+show: true
+title: Github-Projects
+links:
+   -  name: GreenDAO-Simple-Generate
+      url:  https://github.com/ichenkaihua/GreenDAO-Simple-Generate
+      title:  用少量注解简化greendao的生成
+   -  name: ssm-easy-template
+      url: https://github.com/ichenkaihua/ssm-easy-template
+      title: spring+springmvc+mybatis+shiro简单集成框架
+   -  name: spring-ebean
+      url: https://github.com/ichenkaihua/spring-ebean
+      title: spring4+springMVC4+EbeanORM6+flyway+Gradle

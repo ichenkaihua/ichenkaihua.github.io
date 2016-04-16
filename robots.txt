@@ -1,7 +1,9 @@
----
-layout: null
----
 User-agent: *
-Sitemap: {{ site.baseurl }}sitemap.xml
 Disallow: 
-Disallow: /public/
+Disallow: /assets/
+Disallow: /archive.html
+Disallow: /categories.html
+Disallow: /pages.html
+Disallow: /rss.xml
+Disallow: /tags.html
+Disallow: /tools.html

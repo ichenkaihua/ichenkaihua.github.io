@@ -55,7 +55,7 @@ repository_url: https://github.com/ichenkaihua.github.io/blob/master/
 paginate: 5
 paginate_path: "page:num"
 
-baseurl:  ''
+baseurl: "/"
 
 #  specify configuration in the pages and posts for your site.
 defaults:
