@@ -41,11 +41,11 @@ home: true
   {% if paginator.previous_page %}
     <li >
       {% if paginator.previous_page == 1 %}
-           <a href="{{ site.baseurl }}" aria-label="Previous">
+           <a href="/" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
       {% else %}
-           <a href="{{ site.baseurl }}{{ paginator.previous_page_path }}" aria-label="Previous">
+           <a href="{{ paginator.previous_page_path }}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
       {% endif %}
@@ -66,7 +66,7 @@ home: true
         
       {% else %}
       <li>
-        <a href="{{  site.baseurl }}">1</a>
+        <a href="/">1</a>
         </li>
       {% endif %}
     
@@ -76,7 +76,7 @@ home: true
         {% if count == paginator.page %}
           <li class="active"><span class="current-page">{{ count }}</span></li>
         {% else %}
-          <li><a href="{{ site.baseurl }}page{{ count }}">{{ count }}</a></li>
+          <li><a href="/page{{ count }}">{{ count }}</a></li>
         {% endif %}
       
     {% endfor %}
@@ -85,7 +85,7 @@ home: true
   {% if paginator.next_page %}
     <li >
       
-      <a href="{{ site.baseurl }}{{ paginator.next_page_path }}" aria-label="Next">
+      <a href="{{ paginator.next_page_path }}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
@@ -110,7 +110,7 @@ home: true
 {% for category in site.categories %} 
 
 
-<a href="{{ site.baseurl }}categories.html#{{ category[0] }}-ref" class="list-group-item"> {{ category[0] }} <span class="badge ">{{ category[1].size }}</span></a>  
+<a href="/categories.html#{{ category[0] }}-ref" class="list-group-item"> {{ category[0] }} <span class="badge ">{{ category[1].size }}</span></a>  
 
 {% endfor %}  
 
