@@ -10,6 +10,6 @@ links:
    -  name: spring-ebean
       url: https://github.com/ichenkaihua/spring-ebean
       title: spring4+springMVC4+EbeanORM6+flyway+Gradle
-   -  name: EasyHttp.Net
-      url: https://github.com/ichenkaihua/EasyHttp.Net
+   -  name: EasyHttp4Net
+      url: https://github.com/ichenkaihua/EasyHttp4Net
       title: .net平台下基于webrequest的简易Http请求框架
