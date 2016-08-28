@@ -7,7 +7,7 @@ exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md",
 #highlighter: pygments
 #highlighter: ""
 
-#future: true
+future: true
 # for description
 excerpt_separator: "<!-- more -->"
 
